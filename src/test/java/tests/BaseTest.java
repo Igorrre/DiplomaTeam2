@@ -15,20 +15,25 @@ import pages.CarsPage;
 import pages.HousesPage;
 import pages.LoginPage;
 import pages.UsersPage;
+import steps.LoginStep;
+import utils.PropertyReader;
 
 import java.time.Duration;
 import java.util.HashMap;
+
+import static utils.AllureUtils.takeScreenshot;
 
 public class BaseTest {
 
     WebDriver driver;
     SoftAssert softAssert;
     LoginPage loginPage;
+    LoginStep loginStep;
     HousesPage housesPage;
     CarsPage carsPage;
     UsersPage usersPage;
-    String user = System.getProperty("user");
-    String password = System.getProperty("password");
+    String user = System.getProperty("user", PropertyReader.getProperty("user"));
+    String password = System.getProperty("password", PropertyReader.getProperty("password"));
 
     @BeforeMethod(alwaysRun = true, description = "Настройка браузера")
     public void setup(@Optional("chrome") String browser, ITestContext iTestContext) {
@@ -41,9 +46,11 @@ public class BaseTest {
             options.addArguments("--disable-notifications");
             options.addArguments("--disable-popup-blocking");
             options.addArguments("--disable-infobars");
+            options.addArguments("--headless");
             driver = new ChromeDriver(options);
         } else if (browser.equalsIgnoreCase("edge")) {
             EdgeOptions options = new EdgeOptions();
+            options.addArguments("--headless");
             driver = new EdgeDriver(options);
         }
 
@@ -51,6 +58,7 @@ public class BaseTest {
         iTestContext.setAttribute("driver", driver);
         softAssert = new SoftAssert();
         loginPage = new LoginPage(driver);
+        loginStep = new LoginStep(driver);
         //housesPage = new HousesPage(driver);
         //carsPage = new CarsPage(driver);
         //usersPage = new UsersPage(driver);
@@ -58,6 +66,12 @@ public class BaseTest {
 
     @AfterMethod(alwaysRun = true, description = "Закрытие браузера")
     public void tearDown(ITestResult result) {
-        driver.quit();
+        if (ITestResult.FAILURE == result.getStatus()) {
+            takeScreenshot(driver);
+        }
+        if (driver != null) {
+            softAssert.assertAll();
+            driver.quit();
+        }
     }
 }
