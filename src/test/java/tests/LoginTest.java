@@ -12,9 +12,10 @@ public class LoginTest extends BaseTest {
         loginPage.open();
         loginPage.isPageOpened();
         loginPage.login(user, password);
-        Assert.assertEquals(loginPage.findAlert(),
-                "Successful authorization",
-                "Ошибка:не удалось авторизоваться");
+        loginPage.isPageOpened();
+        Assert.assertEquals(loginPage.getTextAlert(),
+               "Successful authorization",
+               "Ошибка:не удалось авторизоваться");
     }
 
     @Test
@@ -23,7 +24,8 @@ public class LoginTest extends BaseTest {
         loginPage.open();
         loginPage.isPageOpened();
         loginPage.login("test@pflb.ru", "test");
-        Assert.assertEquals(loginPage.findAlert(),
+        loginPage.isPageOpened();
+        Assert.assertEquals(loginPage.getTextAlert(),
                 "Bad request",
                 "Неверный текст ошибки");
     }
@@ -34,7 +36,8 @@ public class LoginTest extends BaseTest {
         loginPage.open();
         loginPage.isPageOpened();
         loginPage.login("userpflb.ru", password);
-        Assert.assertEquals(loginPage.findAlert(),
+        loginPage.isPageOpened();
+        Assert.assertEquals(loginPage.getTextAlert(),
                 "Incorrect input data",
                 "Неверный текст ошибки");
     }
@@ -45,7 +48,8 @@ public class LoginTest extends BaseTest {
         loginPage.open();
         loginPage.isPageOpened();
         loginPage.login(user, "test");
-        Assert.assertEquals(loginPage.findAlert(),
+        loginPage.isPageOpened();
+        Assert.assertEquals(loginPage.getTextAlert(),
                 "Bad request",
                 "Неверный текст ошибки");
     }

@@ -51,9 +51,9 @@ public class BaseTest {
         iTestContext.setAttribute("driver", driver);
         softAssert = new SoftAssert();
         loginPage = new LoginPage(driver);
-        housesPage = new HousesPage(driver);
-        carsPage = new CarsPage(driver);
-        usersPage = new UsersPage(driver);
+        //housesPage = new HousesPage(driver);
+        //carsPage = new CarsPage(driver);
+        //usersPage = new UsersPage(driver);
     }
 
     @AfterMethod(alwaysRun = true, description = "Закрытие браузера")

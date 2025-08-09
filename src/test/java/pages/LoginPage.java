@@ -22,9 +22,11 @@ public class LoginPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_FIELD));
     }
 
+    @Override
     @Step("Проверка открытия страницы логина")
-    public void isPageOpened() {
+    public LoginPage isPageOpened() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_FIELD));
+        return this;
     }
 
     @Step("Вход в систему с валидным именем пользователя: {user} и валидным паролем: {password}")
@@ -35,10 +37,12 @@ public class LoginPage extends BasePage {
     }
 
     @Step("Получение текста алерта")
-    public String findAlert() {
-        wait.until(ExpectedConditions.alertIsPresent());
-        Alert alert = driver.switchTo().alert();
-        String alertText = alert.getText();
-        return alertText;
+    public String getTextAlert() {
+        return wait.until(ExpectedConditions.alertIsPresent()).getText();
+    }
+
+    @Step("Клик по кнопке 'ок' алерта")
+    public void acceptAlert() {
+        driver.switchTo().alert().accept();
     }
 }
