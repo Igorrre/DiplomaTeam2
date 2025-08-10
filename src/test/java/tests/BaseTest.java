@@ -34,7 +34,7 @@ public class BaseTest {
     UsersPage usersPage;
     CreateUserPage createUserPage;
     CreateUserStep createUserStep;
-    ReadAllPage readAllPage;
+    ReadAllUsersPage readAllUsersPage;
     String valueId;
     String user = System.getProperty("user", PropertyReader.getProperty("user"));
     String password = System.getProperty("password", PropertyReader.getProperty("password"));
@@ -66,7 +66,7 @@ public class BaseTest {
         loginStep = new LoginStep(driver);
         createUserPage = new CreateUserPage(driver);
         createUserStep = new CreateUserStep(driver);
-        readAllPage = new ReadAllPage(driver);
+        readAllUsersPage = new ReadAllUsersPage(driver);
         //housesPage = new HousesPage(driver);
         //carsPage = new CarsPage(driver);
         //usersPage = new UsersPage(driver);

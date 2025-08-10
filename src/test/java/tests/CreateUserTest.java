@@ -15,7 +15,6 @@ public class CreateUserTest extends BaseTest {
         userFields = setUserFieldsFaker();
 
         loginStep.authorisation(user, password);
-
         createUserPage
                 .open()
                 .isPageOpened()

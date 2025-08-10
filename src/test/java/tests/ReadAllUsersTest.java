@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import static dto.UserFaker.setUserFieldsFaker;
 import static org.testng.Assert.assertTrue;
 
-public class ReadAllTest extends BaseTest {
+public class ReadAllUsersTest extends BaseTest {
 
     @Test
     @Description("Проверка, что созданный пользователь находится в таблице")
@@ -15,11 +15,9 @@ public class ReadAllTest extends BaseTest {
         userFields = setUserFieldsFaker();
 
         loginStep.authorisation(user, password);
-
         valueId = createUserStep.getValueUserId();
+        readAllUsersPage.open().isPageOpened();
 
-        readAllPage.open().isPageOpened();
-
-        assertTrue(readAllPage.findIdInTable(valueId), "Пользователь отсутствует в таблице");
+        assertTrue(readAllUsersPage.findIdInTable(valueId), "Пользователь отсутствует в таблице");
     }
 }

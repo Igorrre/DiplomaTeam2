@@ -26,7 +26,7 @@ public class CreateUserPage extends BasePage {
 
     @Step("Открытие страницы создания нового пользователя")
     public CreateUserPage open() {
-        driver.get("http://82.142.167.37:4881/#/create/user");
+        driver.get(CREATE_USER_URL);
         return this;
     }
 
@@ -37,6 +37,7 @@ public class CreateUserPage extends BasePage {
         new WriteText(driver, "age_send").writeText(String.valueOf(userFields.getAge()));
         new ClickValue(driver, "MALE").clickValue();
         new WriteText(driver, "money_send").writeText(String.valueOf(userFields.getMoney()));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(BUTTON_PUSH_TO_API));
         return this;
     }
 
@@ -48,15 +49,19 @@ public class CreateUserPage extends BasePage {
 
     @Step("Получение текста со статус кодом")
     public String getTextValueStatusCode() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(VALUE_STATUS_CODE));
+        wait.until(ExpectedConditions.textToBe(VALUE_STATUS_CODE, "Status: Successfully pushed, code: 201"));
         return driver.findElement(VALUE_STATUS_CODE).getText();
     }
 
     @Step("Получение значения User ID")
     public String getValueUserId() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(NEW_USER_ID));
+        wait.until(ExpectedConditions.textToBe(VALUE_STATUS_CODE, "Status: Successfully pushed, code: 201"));
         String value = driver.findElement(NEW_USER_ID).getText();
-        String[] parts = value.split(":");
-        return parts[1].trim();
+        if (value.contains(":")) {
+            String[] parts = value.split(":");
+            return parts[1].trim();
+        } else {
+            throw new RuntimeException("Некорректный формат текста в элементе NEW_USER_ID: " + value);
+        }
     }
 }
