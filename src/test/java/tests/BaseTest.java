@@ -19,7 +19,6 @@ import steps.LoginStep;
 import utils.PropertyReader;
 import java.time.Duration;
 import java.util.HashMap;
-
 import static utils.AllureUtils.takeScreenshot;
 
 public class BaseTest {

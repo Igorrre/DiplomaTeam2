@@ -87,6 +87,6 @@ public class CarTest extends BaseTest {
         createCarStep.createCar(carFields);
         savedId = createCarsPage.saveIdCar(id);
         readAllUsersPage.open().isPageOpened();
-        assertTrue(readAllUsersPage.findIdInTable(savedId), "Авто отсутствует в таблице");
+        softAssert.assertTrue(readAllUsersPage.findIdInTable(savedId), "Авто отсутствует в таблице");
     }
 }

@@ -21,7 +21,7 @@ public class CreateUserTest extends BaseTest {
                 .setValuesToCreateUser(userFields)
                 .clickButtonPushToApi();
 
-        assertEquals(createUserPage.getTextValueStatusCode(), "Status: Successfully pushed, code: 201",
+        softAssert.assertEquals(createUserPage.getTextValueStatusCode(), "Status: Successfully pushed, code: 201",
                 "Статус код не равен 201");
     }
 }

@@ -59,12 +59,14 @@ public class CreateCarsPage extends BasePage {
     @Step("Проверка сообщения о создании авто")
     public String checkMessageCreateCar() {
         log.info("Get message Success");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(GET_STATUS));
         return driver.findElement(GET_STATUS).getText();
     }
 
     @Step("Проверка сообщения о создании ID авто")
     public String checkMessageIdCar() {
         log.info("Get message ID");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(GET_ID));
         return driver.findElement(GET_ID).getText();
     }
 
