@@ -39,6 +39,7 @@ public class BaseTest {
     CreateUserStep createUserStep;
     ReadAllUsersPage readAllUsersPage;
     String valueId;
+    String savedId;
     String user = System.getProperty("user", PropertyReader.getProperty("user"));
     String password = System.getProperty("password", PropertyReader.getProperty("password"));
 
@@ -53,7 +54,7 @@ public class BaseTest {
             options.addArguments("--disable-notifications");
             options.addArguments("--disable-popup-blocking");
             options.addArguments("--disable-infobars");
-            options.addArguments("--headless");
+            //options.addArguments("--headless");
             driver = new ChromeDriver(options);
         } else if (browser.equalsIgnoreCase("edge")) {
             EdgeOptions options = new EdgeOptions();
