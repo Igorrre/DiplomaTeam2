@@ -10,7 +10,7 @@ import static org.testng.Assert.assertTrue;
 
 public class CarTest extends BaseTest {
 
-    @Test(priority = 1, testName = "Негативный тест логина без пароля")
+    @Test(priority = 1, testName = "Позитивный тест Проверка сообщения, что авто создан")
     @Description("Проверка сообщения, что авто создан")
     public void createCar() {
         Faker faker = new Faker();
@@ -29,7 +29,7 @@ public class CarTest extends BaseTest {
                 "Авто не создано");
         softAssert.assertEquals(createCarsPage.checkMessageCreateCar(),
                 "Status: Successfully pushed, code: 201",
-                "Авто не создано");
+                "car ID: не создано");
     }
 
     @Test(priority = 2, testName = "Негативный тест. Проверка сообщения, что авто не создан")
