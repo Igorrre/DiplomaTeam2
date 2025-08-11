@@ -13,10 +13,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import org.testng.asserts.SoftAssert;
 import pages.*;
+import steps.CreateCarStep;
 import steps.CreateUserStep;
 import steps.LoginStep;
 import utils.PropertyReader;
-
 import java.time.Duration;
 import java.util.HashMap;
 
@@ -29,9 +29,12 @@ public class BaseTest {
     UserFields userFields;
     LoginPage loginPage;
     LoginStep loginStep;
-    HousesPage housesPage;
-    CarsPage carsPage;
-    UsersPage usersPage;
+    CreateCarStep createCarStep;
+    //HousesPage housesPage;
+    CreateCarsPage createCarsPage;
+    ReadAllCarsPage readAllCarsPage;
+    AllDeletePage allDeletePage;
+    //UsersPage usersPage;
     CreateUserPage createUserPage;
     CreateUserStep createUserStep;
     ReadAllUsersPage readAllUsersPage;
@@ -50,11 +53,11 @@ public class BaseTest {
             options.addArguments("--disable-notifications");
             options.addArguments("--disable-popup-blocking");
             options.addArguments("--disable-infobars");
-//            options.addArguments("--headless");
+            options.addArguments("--headless");
             driver = new ChromeDriver(options);
         } else if (browser.equalsIgnoreCase("edge")) {
             EdgeOptions options = new EdgeOptions();
-//            options.addArguments("--headless");
+            options.addArguments("--headless");
             driver = new EdgeDriver(options);
         }
 
@@ -64,12 +67,13 @@ public class BaseTest {
         softAssert = new SoftAssert();
         loginPage = new LoginPage(driver);
         loginStep = new LoginStep(driver);
+        createCarStep = new CreateCarStep(driver);
+        readAllCarsPage = new ReadAllCarsPage(driver);
         createUserPage = new CreateUserPage(driver);
         createUserStep = new CreateUserStep(driver);
         readAllUsersPage = new ReadAllUsersPage(driver);
-        //housesPage = new HousesPage(driver);
-        //carsPage = new CarsPage(driver);
-        //usersPage = new UsersPage(driver);
+        allDeletePage = new AllDeletePage(driver);
+        createCarsPage = new CreateCarsPage(driver);
     }
 
     @AfterMethod(alwaysRun = true, description = "Закрытие браузера")
