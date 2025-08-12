@@ -12,7 +12,9 @@ public class AllDeletePage extends BasePage {
     private final By DELETE_FIELD_CAR = By.xpath("//div[@role='group']//button[@value='car']//following::input");
     private final By DELETE_BUTTON_CAR = By.xpath("//div[@role='group']//button[@value='car']");
     private final By STATUS_FIELD_CAR = By.xpath("//div[@role='group']//button[contains(text(), 'Status: 204')]");
-
+    private final By DELETE_FIELD_HOUSE = By.xpath("//div[@role='group']//button[@value='house']//following::input");
+    private final By DELETE_BUTTON_HOUSE = By.xpath("//div[@role='group']//button[@value='house']");
+    private final By STATUS_FIELD_HOUSE = By.xpath("//div[@role='group']//button[contains(text(), 'Status: 204')]");
     public AllDeletePage(WebDriver driver) {
         super(driver);
     }
@@ -42,5 +44,20 @@ public class AllDeletePage extends BasePage {
         log.info("Get message delete");
         wait.until(ExpectedConditions.visibilityOfElementLocated(STATUS_FIELD_CAR));
         return driver.findElement(STATUS_FIELD_CAR).getText();
+    }
+
+    @Step("Удаление тестового дома по Id")
+    public void deleteTestHouseId(String SaveTestId) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(DELETE_FIELD_HOUSE));
+        driver.findElement(DELETE_FIELD_HOUSE).sendKeys(SaveTestId);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(DELETE_BUTTON_HOUSE));
+        driver.findElement(DELETE_BUTTON_HOUSE).click();
+    }
+
+    @Step("Получение сообщения об удалении дома")
+    public String getMessageDeleteHouse() {
+        log.info("Get message delete house");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(STATUS_FIELD_HOUSE));
+        return driver.findElement(STATUS_FIELD_HOUSE).getText();
     }
 }
