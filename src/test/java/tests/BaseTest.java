@@ -1,5 +1,6 @@
 package tests;
 
+import dto.HouseFields;
 import dto.UserFields;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,6 +15,7 @@ import org.testng.annotations.Optional;
 import org.testng.asserts.SoftAssert;
 import pages.*;
 import steps.CreateCarStep;
+import steps.CreateHouseStep;
 import steps.CreateUserStep;
 import steps.LoginStep;
 import utils.PropertyReader;
@@ -28,6 +30,10 @@ public class BaseTest {
     WebDriver driver;
     SoftAssert softAssert;
     UserFields userFields;
+    HouseFields houseFields;
+    CreateHouseStep createHouseStep;
+    CreateHousePage createHousePage;
+    ReadAllHousePage readAllHousePage;
     LoginPage loginPage;
     LoginStep loginStep;
     CreateCarStep createCarStep;
@@ -44,6 +50,9 @@ public class BaseTest {
     protected String moneyUp;
     protected String savedId;
     protected String newMoneyValue;
+    String valueId;
+    String carId;
+    String houseId;
     String user = System.getProperty("user", PropertyReader.getProperty("user"));
     String password = System.getProperty("password", PropertyReader.getProperty("password"));
 
@@ -80,6 +89,9 @@ public class BaseTest {
         allDeletePage = new AllDeletePage(driver);
         createCarsPage = new CreateCarsPage(driver);
         addMoneyUserPage = new AddMoneyUserPage(driver);
+        createHousePage = new CreateHousePage(driver);
+        readAllHousePage = new ReadAllHousePage(driver);
+        createHouseStep = new CreateHouseStep(driver);ЫЫ
     }
 
     @AfterMethod(alwaysRun = true, description = "Закрытие браузера")

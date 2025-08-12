@@ -15,6 +15,8 @@ public abstract class BasePage {
     protected final String CREATE_USER_URL = "http://82.142.167.37:4881/#/create/user";
     protected final String READ_ALL_USERS_URL = "http://82.142.167.37:4881/#/read/users";
     protected final String ADD_MONEY_TO_USER = "http://82.142.167.37:4881/#/update/users/plusMoney";
+    protected final String CREATE_HOUSE_URL = "http://82.142.167.37:4881/#/create/house";
+    protected final String ALL_READ_HOUSE_URL = "http://82.142.167.37:4881/#/read/houses";
 
     WebDriver driver;
     WebDriverWait wait;
