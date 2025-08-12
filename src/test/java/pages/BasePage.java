@@ -13,6 +13,8 @@ public abstract class BasePage {
     protected final String ALL_DELETE_URL = "http://82.142.167.37:4881/#/delete/all";
     protected final String CREATE_USER_URL = "http://82.142.167.37:4881/#/create/user";
     protected final String READ_ALL_USERS_URL = "http://82.142.167.37:4881/#/read/users";
+    protected final String READ_USER_WITH_CARS_URL = "http://82.142.167.37:4881/#/read/userInfo";
+    protected final String BUY_OR_SELL_CAR_URL = "http://82.142.167.37:4881/#/update/users/buyCar";
     WebDriver driver;
     WebDriverWait wait;
     Actions actions;
