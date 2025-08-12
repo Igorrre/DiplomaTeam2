@@ -74,7 +74,7 @@ public class CreateCarsPage extends BasePage {
     public String saveIdCar(SaveTestId id) {
         String savedText = driver.findElement(GET_ID).getText();
         String savedId = savedText.replaceAll("\\D", "");
-        id.setSavedId(savedId);
+        id.setCarId(savedId);
         return savedId;
     }
 

@@ -1,5 +1,6 @@
 package tests;
 
+import dto.HouseFields;
 import dto.UserFields;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,17 +14,24 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import pages.*;
 import steps.CreateCarStep;
+import steps.CreateHouseStep;
 import steps.CreateUserStep;
 import steps.LoginStep;
 import utils.PropertyReader;
+
 import java.time.Duration;
 import java.util.HashMap;
+
 import static utils.AllureUtils.takeScreenshot;
 
 public class BaseTest {
 
     WebDriver driver;
     UserFields userFields;
+    HouseFields houseFields;
+    CreateHouseStep createHouseStep;
+    CreateHousePage createHousePage;
+    ReadAllHousePage readAllHousePage;
     LoginPage loginPage;
     LoginStep loginStep;
     CreateCarStep createCarStep;
@@ -35,8 +43,14 @@ public class BaseTest {
     CreateUserPage createUserPage;
     CreateUserStep createUserStep;
     ReadAllUsersPage readAllUsersPage;
+    AddMoneyUserPage addMoneyUserPage;
+    protected String valueId;
+    protected String moneyUp;
+    protected String savedId;
+    protected String newMoneyValue;
     String valueId;
-    String savedId;
+    String carId;
+    String houseId;
     String user = System.getProperty("user", PropertyReader.getProperty("user"));
     String password = System.getProperty("password", PropertyReader.getProperty("password"));
 
@@ -73,6 +87,10 @@ public class BaseTest {
         createCarsPage = new CreateCarsPage(driver);
         readUserWithCarsPage = new ReadUserWithCarsPage(driver);
         buyOrSellCarPage = new BuyOrSellCarPage(driver);
+        addMoneyUserPage = new AddMoneyUserPage(driver);
+        createHousePage = new CreateHousePage(driver);
+        readAllHousePage = new ReadAllHousePage(driver);
+        createHouseStep = new CreateHouseStep(driver);ЫЫ
     }
 
     @AfterMethod(alwaysRun = true, description = "Закрытие браузера")

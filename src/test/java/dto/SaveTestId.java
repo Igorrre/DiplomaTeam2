@@ -4,5 +4,6 @@ import lombok.Data;
 
 @Data
 public class SaveTestId {
-    private String savedId;
+    private String carId;
+    private String houseId;
 }
