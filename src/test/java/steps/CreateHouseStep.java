@@ -17,7 +17,7 @@ public class CreateHouseStep {
     @Step("Получение значения User ID на странице создания пользователя")
     public void createHouse(HouseFields houseFields) {
         createHousePage
-                .openHousePageCreate()
+                .open()
                 .isPageOpened()
                 .addHouseInfo(houseFields)
                 .clickCreateHouse();

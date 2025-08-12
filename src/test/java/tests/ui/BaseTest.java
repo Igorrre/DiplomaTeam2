@@ -1,5 +1,6 @@
-package tests;
+package tests.ui;
 
+import dto.CarFields;
 import dto.HouseFields;
 import dto.UserFields;
 import org.openqa.selenium.WebDriver;
@@ -18,7 +19,6 @@ import steps.CreateHouseStep;
 import steps.CreateUserStep;
 import steps.LoginStep;
 import utils.PropertyReader;
-
 import java.time.Duration;
 import java.util.HashMap;
 
@@ -29,6 +29,7 @@ public class BaseTest {
     WebDriver driver;
     UserFields userFields;
     HouseFields houseFields;
+    CarFields carFields;
     CreateHouseStep createHouseStep;
     CreateHousePage createHousePage;
     ReadAllHousePage readAllHousePage;
@@ -44,13 +45,11 @@ public class BaseTest {
     CreateUserStep createUserStep;
     ReadAllUsersPage readAllUsersPage;
     AddMoneyUserPage addMoneyUserPage;
-    protected String valueId;
+    protected String userId;
+    protected String carId;
+    protected String houseId;
     protected String moneyUp;
-    protected String savedId;
     protected String newMoneyValue;
-    String valueId;
-    String carId;
-    String houseId;
     String user = System.getProperty("user", PropertyReader.getProperty("user"));
     String password = System.getProperty("password", PropertyReader.getProperty("password"));
 
@@ -76,6 +75,7 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.manage().window().maximize();
         iTestContext.setAttribute("driver", driver);
+
         loginPage = new LoginPage(driver);
         loginStep = new LoginStep(driver);
         createCarStep = new CreateCarStep(driver);
@@ -90,7 +90,7 @@ public class BaseTest {
         addMoneyUserPage = new AddMoneyUserPage(driver);
         createHousePage = new CreateHousePage(driver);
         readAllHousePage = new ReadAllHousePage(driver);
-        createHouseStep = new CreateHouseStep(driver);ЫЫ
+        createHouseStep = new CreateHouseStep(driver);
     }
 
     @AfterMethod(alwaysRun = true, description = "Закрытие браузера")

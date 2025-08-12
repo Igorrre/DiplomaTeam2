@@ -3,8 +3,7 @@ package dto;
 import com.github.javafaker.Faker;
 
 public class CarFaker {
-    public static CarFields getCar
-            (String engine, String mark, String model ) {
+    public static CarFields getCar(String engine, String mark, String model ) {
         Faker faker = new Faker();
         return new CarFields(
                 engine,

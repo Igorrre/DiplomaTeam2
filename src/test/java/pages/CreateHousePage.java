@@ -1,7 +1,6 @@
 package pages;
 
 import dto.HouseFields;
-import dto.SaveTestId;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
@@ -13,9 +12,7 @@ import wrappers.Input;
 public class CreateHousePage extends BasePage {
 
     private final By HOUSE_FIELD = By.xpath("//th[contains(text(), ' Floors:')]");
-    private final By CARS = By.xpath("//a[contains(text(), 'Cars')]");
     private final By PUSH_TO_API = By.cssSelector("button.tableButton.btn.btn-primary");
-    private final By CREATE_CARS = By.xpath("//a[contains(@class, 'dropdown-item') and text() = 'Create new']");
     private final By GET_ID = By.xpath("//button[@class='newId btn btn-secondary']");
     private final By GET_STATUS = By.xpath("//button[@class='status btn btn-secondary']");
     private final By ALL_DELETE_FIELD = By.xpath("//a[@href=\"#/delete/all\"]");
@@ -23,8 +20,9 @@ public class CreateHousePage extends BasePage {
     public CreateHousePage(WebDriver driver) {
         super(driver);
     }
+
     @Step("Открытие страницы создания дома")
-    public CreateHousePage openHousePageCreate() {
+    public CreateHousePage open() {
         driver.get(CREATE_HOUSE_URL);
         wait.until(ExpectedConditions.visibilityOfElementLocated(HOUSE_FIELD));
         return this;
@@ -74,18 +72,30 @@ public class CreateHousePage extends BasePage {
         return driver.findElement(GET_ID).getText();
     }
 
-    @Step("Получение ID дома")
-    public String saveIdHouse(SaveTestId id) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(GET_ID));
-        String savedText = driver.findElement(GET_ID).getText();
-        String houseId = savedText.replaceAll("\\D", "");
-        id.setHouseId(houseId);
-        return houseId;
-    }
+//    @Step("Получение ID дома")
+//    public String saveIdHouse(SaveTestId id) {
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(GET_ID));
+//        String savedText = driver.findElement(GET_ID).getText();
+//        String houseId = savedText.replaceAll("\\D", "");
+//        id.setHouseId(houseId);
+//        return houseId;
+//    }
 
     @Step("Клик по вкладке All DELETE")
     public AllDeletePage clickAllDelete() {
         driver.findElement(ALL_DELETE_FIELD).click();
         return new AllDeletePage(driver);
+    }
+
+    @Step("Получение значения Car ID")
+    public String getValueHouseId() {
+        wait.until(ExpectedConditions.textToBe(GET_STATUS, "Status: Successfully pushed, code: 201"));
+        String value = driver.findElement(GET_ID).getText();
+        if (value.contains(":")) {
+            String[] parts = value.split(":");
+            return parts[1].trim();
+        } else {
+            throw new RuntimeException("Некорректный формат текста в элементе NEW_CAR_ID: " + value);
+        }
     }
 }

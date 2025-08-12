@@ -1,10 +1,8 @@
-package tests;
+package tests.ui;
 
-import dto.SaveTestId;
 import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
 import static dto.HouseFaker.getHouse;
 
 public class HouseTest extends BaseTest{
@@ -15,10 +13,7 @@ public class HouseTest extends BaseTest{
         softAssert = new SoftAssert();
         houseFields = getHouse();
         loginStep.authorisation(user, password);
-        createHousePage.openHousePageCreate()
-                .isPageOpened()
-                .addHouseInfo(houseFields)
-                .clickCreateHouse();
+        createHouseStep.createHouse(houseFields);
         softAssert.assertTrue(createHousePage.checkMessageIdHouse().contains("New house ID:"),
                 "Дом не создан");
         softAssert.assertEquals(createHousePage.checkMessageCreateHouse(),
@@ -32,27 +27,23 @@ public class HouseTest extends BaseTest{
     public void createHouseNotAllFieldCheck() {
         softAssert = new SoftAssert();
         loginStep.authorisation(user, password);
-        createHousePage.openHousePageCreate()
+        createHousePage.open()
                 .isPageOpened()
                 .clickCreateHouse();
         softAssert.assertEquals(createHousePage.checkMessageCreateHouse(),
                 "Status: Invalid input data",
                 "Дом не создан");
-        //softAssert.assertAll();
+        softAssert.assertAll();
     }
 
     @Test(priority = 3, testName = "Проверка удаления дома")
     @Description("Проверка удаления дома")
     public void deleteHouse() {
         softAssert = new SoftAssert();
-        SaveTestId id = new SaveTestId();
         houseFields = getHouse();
         loginStep.authorisation(user, password);
-        createHousePage.openHousePageCreate()
-                .isPageOpened()
-                .addHouseInfo(houseFields)
-                .clickCreateHouse();
-        houseId = createHousePage.saveIdHouse(id);
+        createHouseStep.createHouse(houseFields);
+        houseId = createHousePage.getValueHouseId();
         allDeletePage.open()
                 .isPageOpened()
                 .deleteTestHouseId(houseId);
@@ -66,16 +57,13 @@ public class HouseTest extends BaseTest{
     @Description("Проверка, что созданный дом находится в таблице")
     public void checkIdHouseInTable() {
         softAssert = new SoftAssert();
-        SaveTestId id = new SaveTestId();
         houseFields = getHouse();
         loginStep.authorisation(user, password);
-        createHousePage.openHousePageCreate()
-                .isPageOpened()
-                .addHouseInfo(houseFields)
-                .clickCreateHouse();
-        houseId = createHousePage.saveIdHouse(id);
+        createHouseStep.createHouse(houseFields);
+        houseId = createHousePage.getValueHouseId();
         readAllHousePage.open().isPageOpened();
-        softAssert.assertTrue(readAllHousePage.findIdHouseInTable(houseId), "Дом отсутствует в таблице");
+        softAssert.assertTrue(readAllHousePage.findIdHouseInTable(houseId),
+                "Дом отсутствует в таблице");
         softAssert.assertAll();
     }
 }

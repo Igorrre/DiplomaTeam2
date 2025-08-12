@@ -1,25 +1,19 @@
-package tests;
+package tests.ui;
 
 import com.github.javafaker.Faker;
 import dto.CarFields;
-import dto.SaveTestId;
 import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
 import static dto.UserFaker.setUserFieldsFaker;
 
 public class BuyCarTest extends BaseTest {
-
+    SoftAssert softAssert;
     @Test
     @Description("Проверка, что пользователь может купить авто")
     public void checkUserWithCar() {
-        SoftAssert softAssert;
         softAssert = new SoftAssert();
         userFields = setUserFieldsFaker();
-        loginStep.authorisation(user, password);
-        valueId = createUserStep.getValueUserId();
-        SaveTestId id = new SaveTestId();
         Faker faker = new Faker();
         CarFields carFields = CarFields.builder()
                 .engine("Electric")
@@ -27,21 +21,23 @@ public class BuyCarTest extends BaseTest {
                 .model("model s")
                 .price(faker.number().numberBetween(500, 5000))
                 .build();
+        loginStep.authorisation(user, password);
+        userId = createUserStep.getValueUserId();
         createCarStep.createCar(carFields);
-        savedId = createCarsPage.getValueCarId();
+        carId = createCarsPage.getValueCarId();
         buyOrSellCarPage.open()
             .isPageOpened()
-            .setValuesToBuyCar(valueId, savedId)
+            .setValuesToBuyCar(userId, carId)
             .clickButtonPushToApi();
         softAssert.assertEquals(buyOrSellCarPage.getTextValueStatusCode(),
             "Status: Successfully pushed, code: 200",
             "Ошибка: авто не куплено");
         readUserWithCarsPage.open()
             .isPageOpened()
-            .inputIdUser(valueId)
+            .inputIdUser(userId)
             .clickButtonRead();
-        softAssert.assertEquals(readUserWithCarsPage.getUserId(), valueId, "Пользователь не найден");
-        softAssert.assertEquals(readUserWithCarsPage.getCarId(), savedId, "У пользователя отсутствует авто");
+        softAssert.assertEquals(readUserWithCarsPage.getUserId(), userId, "Пользователь не найден");
+        softAssert.assertEquals(readUserWithCarsPage.getCarId(), carId, "У пользователя отсутствует авто");
         softAssert.assertAll();
     }
 }

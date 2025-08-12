@@ -1,8 +1,7 @@
-package tests;
+package tests.ui;
 
 import com.github.javafaker.Faker;
 import dto.CarFields;
-import dto.SaveTestId;
 import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -13,18 +12,9 @@ public class CarTest extends BaseTest {
     @Description("Проверка сообщения, что авто создан")
     public void createCar() {
         softAssert = new SoftAssert();
-        Faker faker = new Faker();
-        CarFields carFields = CarFields.builder()
-                .engine("Electric")
-                .mark("tesla")
-                .model("model s")
-                .price(faker.number().numberBetween(500, 5000))
-                .build();
+        CarFields carFields = CarFields.builder().build();
         loginStep.authorisation(user, password);
-        createCarsPage.openCarPageCreate()
-                .isPageOpened()
-                .addCarInfo(carFields)
-                .clickCreateCar();
+        createCarStep.createCar(carFields);
         softAssert.assertTrue(createCarsPage.checkMessageIdCar().contains("New car ID:"),
                 "Авто не создано");
         softAssert.assertEquals(createCarsPage.checkMessageCreateCar(),
@@ -39,16 +29,17 @@ public class CarTest extends BaseTest {
         softAssert = new SoftAssert();
         Faker faker = new Faker();
         CarFields carFields = CarFields.builder()
-                .engine("Electric")
+                .engine("Car")
                 .price(faker.number().numberBetween(500, 5000))
                 .build();
         loginStep.authorisation(user, password);
-        createCarsPage.openCarPageCreate()
+        createCarsPage.open()
                 .isPageOpened()
                 .addCarInfo(carFields)
                 .clickCreateCar();
         softAssert.assertEquals(createCarsPage.checkMessageCreateCar(),
-                "Status: Invalid request data",
+                //"Status: Invalid request data",
+                "Status: AxiosError: Request failed with status code 400",
                 "Авто не создано");
         softAssert.assertAll();
     }
@@ -57,7 +48,6 @@ public class CarTest extends BaseTest {
     @Description("Проверка удаления авто")
     public void deleteCar() {
         softAssert = new SoftAssert();
-        SaveTestId id = new SaveTestId();
         Faker faker = new Faker();
         CarFields carFields = CarFields.builder()
                 .engine("Electric")
@@ -67,7 +57,7 @@ public class CarTest extends BaseTest {
                 .build();
         loginStep.authorisation(user, password);
         createCarStep.createCar(carFields);
-        carId = createCarsPage.saveIdCar(id);
+        carId = createCarsPage.getValueCarId();
         allDeletePage.open()
                 .isPageOpened()
                 .deleteTestCarId(carId);
@@ -81,7 +71,6 @@ public class CarTest extends BaseTest {
     @Description("Проверка, что созданный авто находится в таблице")
     public void checkIdCarInTable() {
         softAssert = new SoftAssert();
-        SaveTestId id = new SaveTestId();
         Faker faker = new Faker();
         CarFields carFields = CarFields.builder()
                 .engine("Electric")
@@ -91,9 +80,10 @@ public class CarTest extends BaseTest {
                 .build();
         loginStep.authorisation(user, password);
         createCarStep.createCar(carFields);
-        carId = createCarsPage.saveIdCar(id);
+        carId = createCarsPage.getValueCarId();
         readAllUsersPage.open().isPageOpened();
-        softAssert.assertTrue(readAllCarsPage.findIdCarInTable(carId), "Авто отсутствует в таблице");
+        softAssert.assertTrue(readAllCarsPage.findIdCarInTable(carId),
+                "Авто отсутствует в таблице");
         softAssert.assertAll();
     }
 }

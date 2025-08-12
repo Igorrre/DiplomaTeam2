@@ -1,4 +1,4 @@
-package tests;
+package tests.ui;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Owner;
@@ -16,9 +16,11 @@ public class ReadAllUsersTest extends BaseTest {
         softAssert = new SoftAssert();
         userFields = setUserFieldsFaker();
         loginStep.authorisation(user, password);
-        valueId = createUserStep.getValueUserId();
-        readAllUsersPage.open().isPageOpened();
-        softAssert.assertTrue(readAllUsersPage.findIdInTable(valueId), "Пользователь отсутствует в таблице");
+        userId = createUserStep.getValueUserId();
+        readAllUsersPage.open()
+                .isPageOpened();
+        softAssert.assertTrue(readAllUsersPage.findIdInTable(userId),
+                "Пользователь отсутствует в таблице");
         softAssert.assertAll();
     }
 }

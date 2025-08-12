@@ -64,6 +64,7 @@ public class AllDeletePage extends BasePage {
     public String getMessageDeleteUser() {
         wait.until(ExpectedConditions.textToBe(MESSAGE_USER_TEXT, "Status: 204"));
         return driver.findElement(MESSAGE_USER_TEXT).getText();
+    }
 
     @Step("Удаление тестового дома по Id")
     public void deleteTestHouseId(String SaveTestId) {
