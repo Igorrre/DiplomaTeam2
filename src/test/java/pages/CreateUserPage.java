@@ -2,17 +2,20 @@ package pages;
 
 import dto.UserFields;
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import wrappers.ClickValue;
 import wrappers.WriteText;
 
+@Log4j2
 public class CreateUserPage extends BasePage {
 
     private final By BUTTON_PUSH_TO_API = By.xpath("//button[contains(text(), 'PUSH')]");
     private final By VALUE_STATUS_CODE = By.xpath("(//div[@role='group']//button[@type='button'])[2]");
     private final By NEW_USER_ID = By.xpath("(//div[@role='group']//button[@type='button'])[3]");
+    private final By INPUT_USER_MONEY = By.xpath("//input[@id='money_send']");
 
     public CreateUserPage(WebDriver driver) {
         super(driver);
@@ -63,5 +66,11 @@ public class CreateUserPage extends BasePage {
         } else {
             throw new RuntimeException("Некорректный формат текста в элементе NEW_USER_ID: " + value);
         }
+    }
+
+    @Step("Получение денеХ у пользователя")
+    public String getMoneyValue() {
+        wait.until(ExpectedConditions.textToBe(VALUE_STATUS_CODE, "Status: Successfully pushed, code: 201"));
+        return driver.findElement(INPUT_USER_MONEY).getAttribute("valueAsNumber").trim();
     }
 }

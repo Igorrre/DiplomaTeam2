@@ -28,6 +28,6 @@ public class CreateUserStep {
                 .setValuesToCreateUser(userFields)
                 .clickButtonPushToApi().getValueUserId();
 
-        return valueId;
+        return valueId.trim();
     }
 }

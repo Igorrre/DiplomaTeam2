@@ -12,6 +12,9 @@ public class AllDeletePage extends BasePage {
     private final By DELETE_FIELD = By.xpath("//div[@role='group']//button[contains(text(), '-- DELETE CAR --')] //following::input");
     private final By DELETE_BUTTON = By.xpath("//div[@role='group']//button[contains(text(), '-- DELETE CAR --')]");
     private final By STATUS_FIELD = By.xpath("//div[@role='group']//button[contains(text(), 'Status: 204')]");
+    private final By BUTTON_USER_DELETE = By.xpath("//button[@value='user']");
+    private final By INPUT_USER_FIELD = By.xpath("(//button[@value='user']/following::input)[1]");
+    private final By MESSAGE_USER_TEXT = By.xpath("(//button[@value='user']/following::button)[2]");
 
     public AllDeletePage(WebDriver driver) {
         super(driver);
@@ -41,5 +44,19 @@ public class AllDeletePage extends BasePage {
     public String getMessageDeleteCar() {
         log.info("Get message delete");
         return driver.findElement(STATUS_FIELD).getText();
+    }
+
+    @Step("Удаление пользователя по Id")
+    public AllDeletePage deleteUserById(String id) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(INPUT_USER_FIELD));
+        driver.findElement(INPUT_USER_FIELD).sendKeys(id);
+        driver.findElement(BUTTON_USER_DELETE).click();
+        return this;
+    }
+
+    @Step("Получение сообщения об удалении пользователя")
+    public String getMessageDeleteUser() {
+        wait.until(ExpectedConditions.textToBe(MESSAGE_USER_TEXT, "Status: 204"));
+        return driver.findElement(MESSAGE_USER_TEXT).getText();
     }
 }

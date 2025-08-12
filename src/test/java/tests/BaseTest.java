@@ -17,8 +17,10 @@ import steps.CreateCarStep;
 import steps.CreateUserStep;
 import steps.LoginStep;
 import utils.PropertyReader;
+
 import java.time.Duration;
 import java.util.HashMap;
+
 import static utils.AllureUtils.takeScreenshot;
 
 public class BaseTest {
@@ -37,8 +39,11 @@ public class BaseTest {
     CreateUserPage createUserPage;
     CreateUserStep createUserStep;
     ReadAllUsersPage readAllUsersPage;
-    String valueId;
-    String savedId;
+    AddMoneyUserPage addMoneyUserPage;
+    protected String valueId;
+    protected String moneyUp;
+    protected String savedId;
+    protected String newMoneyValue;
     String user = System.getProperty("user", PropertyReader.getProperty("user"));
     String password = System.getProperty("password", PropertyReader.getProperty("password"));
 
@@ -74,6 +79,7 @@ public class BaseTest {
         readAllUsersPage = new ReadAllUsersPage(driver);
         allDeletePage = new AllDeletePage(driver);
         createCarsPage = new CreateCarsPage(driver);
+        addMoneyUserPage = new AddMoneyUserPage(driver);
     }
 
     @AfterMethod(alwaysRun = true, description = "Закрытие браузера")
