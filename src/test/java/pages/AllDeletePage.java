@@ -12,9 +12,15 @@ public class AllDeletePage extends BasePage {
     private final By DELETE_FIELD_CAR = By.xpath("//div[@role='group']//button[@value='car']//following::input");
     private final By DELETE_BUTTON_CAR = By.xpath("//div[@role='group']//button[@value='car']");
     private final By STATUS_FIELD_CAR = By.xpath("//div[@role='group']//button[contains(text(), 'Status: 204')]");
+
+    private final By BUTTON_USER_DELETE = By.xpath("//button[@value='user']");
+    private final By INPUT_USER_FIELD = By.xpath("(//button[@value='user']/following::input)[1]");
+    private final By MESSAGE_USER_TEXT = By.xpath("(//button[@value='user']/following::button)[2]");
+
     private final By DELETE_FIELD_HOUSE = By.xpath("//div[@role='group']//button[@value='house']//following::input");
     private final By DELETE_BUTTON_HOUSE = By.xpath("//div[@role='group']//button[@value='house']");
     private final By STATUS_FIELD_HOUSE = By.xpath("//div[@role='group']//button[contains(text(), 'Status: 204')]");
+
     public AllDeletePage(WebDriver driver) {
         super(driver);
     }
@@ -45,6 +51,19 @@ public class AllDeletePage extends BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(STATUS_FIELD_CAR));
         return driver.findElement(STATUS_FIELD_CAR).getText();
     }
+
+    @Step("Удаление пользователя по Id")
+    public AllDeletePage deleteUserById(String id) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(INPUT_USER_FIELD));
+        driver.findElement(INPUT_USER_FIELD).sendKeys(id);
+        driver.findElement(BUTTON_USER_DELETE).click();
+        return this;
+    }
+
+    @Step("Получение сообщения об удалении пользователя")
+    public String getMessageDeleteUser() {
+        wait.until(ExpectedConditions.textToBe(MESSAGE_USER_TEXT, "Status: 204"));
+        return driver.findElement(MESSAGE_USER_TEXT).getText();
 
     @Step("Удаление тестового дома по Id")
     public void deleteTestHouseId(String SaveTestId) {

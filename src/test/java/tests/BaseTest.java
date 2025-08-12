@@ -12,19 +12,23 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
+import org.testng.asserts.SoftAssert;
 import pages.*;
 import steps.CreateCarStep;
 import steps.CreateHouseStep;
 import steps.CreateUserStep;
 import steps.LoginStep;
 import utils.PropertyReader;
+
 import java.time.Duration;
 import java.util.HashMap;
+
 import static utils.AllureUtils.takeScreenshot;
 
 public class BaseTest {
 
     WebDriver driver;
+    SoftAssert softAssert;
     UserFields userFields;
     HouseFields houseFields;
     CreateHouseStep createHouseStep;
@@ -41,6 +45,11 @@ public class BaseTest {
     CreateUserPage createUserPage;
     CreateUserStep createUserStep;
     ReadAllUsersPage readAllUsersPage;
+    AddMoneyUserPage addMoneyUserPage;
+    protected String valueId;
+    protected String moneyUp;
+    protected String savedId;
+    protected String newMoneyValue;
     String valueId;
     String carId;
     String houseId;
@@ -69,6 +78,7 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.manage().window().maximize();
         iTestContext.setAttribute("driver", driver);
+        softAssert = new SoftAssert();
         loginPage = new LoginPage(driver);
         loginStep = new LoginStep(driver);
         createCarStep = new CreateCarStep(driver);
@@ -78,9 +88,10 @@ public class BaseTest {
         readAllUsersPage = new ReadAllUsersPage(driver);
         allDeletePage = new AllDeletePage(driver);
         createCarsPage = new CreateCarsPage(driver);
+        addMoneyUserPage = new AddMoneyUserPage(driver);
         createHousePage = new CreateHousePage(driver);
         readAllHousePage = new ReadAllHousePage(driver);
-        createHouseStep = new CreateHouseStep(driver);
+        createHouseStep = new CreateHouseStep(driver);ЫЫ
     }
 
     @AfterMethod(alwaysRun = true, description = "Закрытие браузера")
@@ -89,6 +100,7 @@ public class BaseTest {
             takeScreenshot(driver);
         }
         if (driver != null) {
+            softAssert.assertAll();
             driver.quit();
         }
     }
