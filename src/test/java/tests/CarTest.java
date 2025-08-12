@@ -5,14 +5,14 @@ import dto.CarFields;
 import dto.SaveTestId;
 import io.qameta.allure.Description;
 import org.testng.annotations.Test;
-
-import static org.testng.Assert.assertTrue;
+import org.testng.asserts.SoftAssert;
 
 public class CarTest extends BaseTest {
-
+    SoftAssert softAssert;
     @Test(priority = 1, testName = "Позитивный тест Проверка сообщения, что авто создан")
     @Description("Проверка сообщения, что авто создан")
     public void createCar() {
+        softAssert = new SoftAssert();
         Faker faker = new Faker();
         CarFields carFields = CarFields.builder()
                 .engine("Electric")
@@ -30,11 +30,13 @@ public class CarTest extends BaseTest {
         softAssert.assertEquals(createCarsPage.checkMessageCreateCar(),
                 "Status: Successfully pushed, code: 201",
                 "car ID: не создано");
+        softAssert.assertAll();
     }
 
     @Test(priority = 2, testName = "Негативный тест. Проверка сообщения, что авто не создан")
     @Description("Проверка сообщения, что авто не создан")
     public void createCarNotAllFieldCheck() {
+        softAssert = new SoftAssert();
         Faker faker = new Faker();
         CarFields carFields = CarFields.builder()
                 .engine("Electric")
@@ -48,11 +50,13 @@ public class CarTest extends BaseTest {
         softAssert.assertEquals(createCarsPage.checkMessageCreateCar(),
                 "Status: Invalid request data",
                 "Авто не создано");
+        softAssert.assertAll();
     }
 
     @Test(priority = 3, testName = "Проверка удаления авто")
     @Description("Проверка удаления авто")
     public void deleteCar() {
+        softAssert = new SoftAssert();
         SaveTestId id = new SaveTestId();
         Faker faker = new Faker();
         CarFields carFields = CarFields.builder()
@@ -63,18 +67,20 @@ public class CarTest extends BaseTest {
                 .build();
         loginStep.authorisation(user, password);
         createCarStep.createCar(carFields);
-        savedId = createCarsPage.saveIdCar(id);
+        carId = createCarsPage.saveIdCar(id);
         allDeletePage.open()
                 .isPageOpened()
-                .deleteTestCarId(savedId);
+                .deleteTestCarId(carId);
         softAssert.assertEquals(allDeletePage.getMessageDeleteCar(),
                 "Status: 204",
                 "Авто не удалено");
+        softAssert.assertAll();
     }
 
     @Test(priority = 4, testName = "Проверка, что созданный авто находится в таблице")
     @Description("Проверка, что созданный авто находится в таблице")
     public void checkIdCarInTable() {
+        softAssert = new SoftAssert();
         SaveTestId id = new SaveTestId();
         Faker faker = new Faker();
         CarFields carFields = CarFields.builder()
@@ -85,8 +91,9 @@ public class CarTest extends BaseTest {
                 .build();
         loginStep.authorisation(user, password);
         createCarStep.createCar(carFields);
-        savedId = createCarsPage.saveIdCar(id);
+        carId = createCarsPage.saveIdCar(id);
         readAllUsersPage.open().isPageOpened();
-        softAssert.assertTrue(readAllUsersPage.findIdInTable(savedId), "Авто отсутствует в таблице");
+        softAssert.assertTrue(readAllCarsPage.findIdCarInTable(carId), "Авто отсутствует в таблице");
+        softAssert.assertAll();
     }
 }
