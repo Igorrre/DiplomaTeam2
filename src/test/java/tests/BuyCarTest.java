@@ -16,12 +16,9 @@ public class BuyCarTest extends BaseTest {
     public void checkUserWithCar() {
         SoftAssert softAssert;
         softAssert = new SoftAssert();
-    //вход + создание пользака + запоминание айди
         userFields = setUserFieldsFaker();
         loginStep.authorisation(user, password);
         valueId = createUserStep.getValueUserId();
-
-    //создание авто + запоминание айди
         SaveTestId id = new SaveTestId();
         Faker faker = new Faker();
         CarFields carFields = CarFields.builder()
@@ -32,7 +29,6 @@ public class BuyCarTest extends BaseTest {
                 .build();
         createCarStep.createCar(carFields);
         savedId = createCarsPage.getValueCarId();
-    //полупка авто
         buyOrSellCarPage.open()
             .isPageOpened()
             .setValuesToBuyCar(valueId, savedId)
@@ -40,7 +36,6 @@ public class BuyCarTest extends BaseTest {
         softAssert.assertEquals(buyOrSellCarPage.getTextValueStatusCode(),
             "Status: Successfully pushed, code: 200",
             "Ошибка: авто не куплено");
-    //проверка в общей таблице, что у пользака куплено авто
         readUserWithCarsPage.open()
             .isPageOpened()
             .inputIdUser(valueId)

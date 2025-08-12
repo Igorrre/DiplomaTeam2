@@ -38,18 +38,14 @@ public class CreateCarsPage extends BasePage {
     }
 
     @Step("Заполнение карточки авто")
-    public CreateCarsPage addCarInfo(CarFields carFields) throws InterruptedException {
+    public CreateCarsPage addCarInfo(CarFields carFields) {
         log.info("engine: {}", carFields.getEngine());
-        Thread.sleep(2000);
         new Input(driver, "engine").write(carFields.getEngine());
         log.info("mark: {}", carFields.getMark());
-        Thread.sleep(2000);
         new Input(driver, "mark").write(carFields.getMark());
         log.info("model: {}", carFields.getModel());
-        Thread.sleep(2000);
         new Input(driver, "model").write(carFields.getModel());
         log.info("price: {}", carFields.getPrice());
-        Thread.sleep(2000);
         new Input(driver, "price").write(String.valueOf(carFields.getPrice()));
         return this;
     }
