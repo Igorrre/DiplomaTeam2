@@ -12,7 +12,6 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
-import org.testng.asserts.SoftAssert;
 import pages.*;
 import steps.CreateCarStep;
 import steps.CreateHouseStep;
@@ -28,7 +27,6 @@ import static utils.AllureUtils.takeScreenshot;
 public class BaseTest {
 
     WebDriver driver;
-    SoftAssert softAssert;
     UserFields userFields;
     HouseFields houseFields;
     CreateHouseStep createHouseStep;
@@ -37,11 +35,11 @@ public class BaseTest {
     LoginPage loginPage;
     LoginStep loginStep;
     CreateCarStep createCarStep;
-    //HousesPage housesPage;
+    ReadUserWithCarsPage readUserWithCarsPage;
     CreateCarsPage createCarsPage;
     ReadAllCarsPage readAllCarsPage;
     AllDeletePage allDeletePage;
-    //UsersPage usersPage;
+    BuyOrSellCarPage buyOrSellCarPage;
     CreateUserPage createUserPage;
     CreateUserStep createUserStep;
     ReadAllUsersPage readAllUsersPage;
@@ -78,7 +76,6 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.manage().window().maximize();
         iTestContext.setAttribute("driver", driver);
-        softAssert = new SoftAssert();
         loginPage = new LoginPage(driver);
         loginStep = new LoginStep(driver);
         createCarStep = new CreateCarStep(driver);
@@ -88,6 +85,8 @@ public class BaseTest {
         readAllUsersPage = new ReadAllUsersPage(driver);
         allDeletePage = new AllDeletePage(driver);
         createCarsPage = new CreateCarsPage(driver);
+        readUserWithCarsPage = new ReadUserWithCarsPage(driver);
+        buyOrSellCarPage = new BuyOrSellCarPage(driver);
         addMoneyUserPage = new AddMoneyUserPage(driver);
         createHousePage = new CreateHousePage(driver);
         readAllHousePage = new ReadAllHousePage(driver);
@@ -100,7 +99,6 @@ public class BaseTest {
             takeScreenshot(driver);
         }
         if (driver != null) {
-            softAssert.assertAll();
             driver.quit();
         }
     }

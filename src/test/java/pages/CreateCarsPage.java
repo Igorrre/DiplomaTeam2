@@ -83,4 +83,19 @@ public class CreateCarsPage extends BasePage {
         driver.findElement(ALL_DELETE_FIELD).click();
         return new AllDeletePage(driver);
     }
+
+    //Если использовать этот метод, то ID авто при создании сохраняется и значение можно использовать дальше
+    private final By VALUE_STATUS_CODE = By.xpath("//*[@id=\"root\"]/div/section/div/div/button[2]");
+    private final By NEW_CAR_ID = By.xpath("//*[@id=\"root\"]/div/section/div/div/button[3]");
+    @Step("Получение значения Car ID")
+    public String getValueCarId() {
+        wait.until(ExpectedConditions.textToBe(VALUE_STATUS_CODE, "Status: Successfully pushed, code: 201"));
+        String value = driver.findElement(NEW_CAR_ID).getText();
+        if (value.contains(":")) {
+            String[] parts = value.split(":");
+            return parts[1].trim();
+        } else {
+            throw new RuntimeException("Некорректный формат текста в элементе NEW_CAR_ID: " + value);
+        }
+    }
 }
