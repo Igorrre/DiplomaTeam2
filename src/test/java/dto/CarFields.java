@@ -10,11 +10,11 @@ import lombok.Data;
 
 public class CarFields {
     @Builder.Default
-    String engine = "";
+    String engine = "Electric";
     @Builder.Default
-    String mark = "";
+    String mark = "tesla";
     @Builder.Default
-    String model = "";
+    String model = "model s";
     @Builder.Default
-    int price = Integer.parseInt("");
+    int price = Integer.parseInt("3333");
 }
