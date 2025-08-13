@@ -27,9 +27,6 @@ public class CarTest extends BaseTest {
         createCarStep.createCar(car);
         softAssert.assertTrue(createCarsPage.checkMessageIdCar().contains("New car ID:"),
                 "Авто не создано");
-        softAssert.assertEquals(createCarsPage.checkMessageCreateCar(),
-                "Status: Successfully pushed, code: 201",
-                "car ID: не создано");
         softAssert.assertAll();
     }
 

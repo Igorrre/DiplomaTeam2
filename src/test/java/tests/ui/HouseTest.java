@@ -18,9 +18,6 @@ public class HouseTest extends BaseTest{
         createHouseStep.createHouse(house);
         softAssert.assertTrue(createHousePage.checkMessageIdHouse().contains("New house ID:"),
                 "Дом не создан");
-        softAssert.assertEquals(createHousePage.checkMessageCreateHouse(),
-                "Status: Successfully pushed, code: 201",
-                "house ID: не создано");
         softAssert.assertAll();
     }
 

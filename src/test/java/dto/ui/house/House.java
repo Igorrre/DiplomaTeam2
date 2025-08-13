@@ -8,10 +8,16 @@ import lombok.Data;
 @AllArgsConstructor
 @Builder
 public class House {
-    Integer floor_send;
-    Integer price_send;
-    Integer parking_first_send;
-    Integer parking_second_send;
-    Integer parking_third_send;
-    Integer parking_fourth_send;
+    @Builder.Default
+    Integer floor_send =0;
+    @Builder.Default
+    Integer price_send = 0;
+    @Builder.Default
+    Integer parking_first_send = 0;
+    @Builder.Default
+    Integer parking_second_send = 0;
+    @Builder.Default
+    Integer parking_third_send = 0;
+    @Builder.Default
+    Integer parking_fourth_send = 0;
 }

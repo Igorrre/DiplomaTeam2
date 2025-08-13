@@ -36,6 +36,7 @@ public class CreateCarsPage extends BasePage {
 
     @Step("Заполнение карточки авто")
     public CreateCarsPage addCarInfo(Car car) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(PUSH_TO_API));
         log.info("engine: {}", car.getEngine());
         new Input(driver, "engine").write(car.getEngine());
         log.info("mark: {}", car.getMark());

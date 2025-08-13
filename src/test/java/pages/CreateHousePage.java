@@ -15,7 +15,6 @@ public class CreateHousePage extends BasePage {
     private final By PUSH_TO_API = By.cssSelector("button.tableButton.btn.btn-primary");
     private final By GET_ID = By.xpath("//button[@class='newId btn btn-secondary']");
     private final By GET_STATUS = By.xpath("//button[@class='status btn btn-secondary']");
-    private final By ALL_DELETE_FIELD = By.xpath("//a[@href=\"#/delete/all\"]");
 
     public CreateHousePage(WebDriver driver) {
         super(driver);
@@ -39,6 +38,7 @@ public class CreateHousePage extends BasePage {
 
     @Step("Заполнение карточки дома Faker")
     public CreateHousePage addHouseInfo(House house) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(PUSH_TO_API));
         log.info("floor_send: {}", house.getFloor_send());
         new Input(driver, "floor_send").write(String.valueOf(house.getFloor_send()));
         log.info("price_send: {}", house.getPrice_send());
