@@ -1,8 +1,8 @@
 package tests.ui;
 
-import dto.CarFields;
-import dto.HouseFields;
-import dto.UserFields;
+import dto.ui.CarFields;
+import dto.ui.HouseFields;
+import dto.ui.UserFields;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -50,8 +50,8 @@ public class BaseTest {
     protected String houseId;
     protected String moneyUp;
     protected String newMoneyValue;
-    String user = System.getProperty("user", PropertyReader.getProperty("user"));
-    String password = System.getProperty("password", PropertyReader.getProperty("password"));
+    protected String user = System.getProperty("user", PropertyReader.getProperty("user"));
+    protected String password = System.getProperty("password", PropertyReader.getProperty("password"));
 
     @BeforeMethod(alwaysRun = true, description = "Настройка браузера")
     public void setup(@Optional("chrome") String browser, ITestContext iTestContext) {
