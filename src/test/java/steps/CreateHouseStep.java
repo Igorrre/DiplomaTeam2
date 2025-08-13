@@ -1,6 +1,6 @@
 package steps;
 
-import dto.HouseFields;
+import dto.ui.house.House;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import pages.CreateHousePage;
@@ -15,11 +15,11 @@ public class CreateHouseStep {
     }
 
     @Step("Получение значения User ID на странице создания пользователя")
-    public void createHouse(HouseFields houseFields) {
+    public void createHouse(House house) {
         createHousePage
                 .open()
                 .isPageOpened()
-                .addHouseInfo(houseFields)
+                .addHouseInfo(house)
                 .clickCreateHouse();
     }
 }

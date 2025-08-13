@@ -1,20 +1,30 @@
 package tests.ui;
 
 import com.github.javafaker.Faker;
-import dto.CarFields;
+import dto.ui.car.Car;
 import io.qameta.allure.Description;
+import io.qameta.allure.Owner;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 public class CarTest extends BaseTest {
+
     SoftAssert softAssert;
+
     @Test(priority = 1, testName = "Позитивный тест Проверка сообщения, что авто создан")
+    @Owner("Biruykov I.D.")
     @Description("Проверка сообщения, что авто создан")
     public void createCar() {
         softAssert = new SoftAssert();
-        CarFields carFields = CarFields.builder().build();
+        Faker faker = new Faker();
+        Car car = Car.builder()
+                .engine("Electric")
+                .mark("tesla")
+                .model("model s")
+                .price(faker.number().numberBetween(500, 5000))
+                .build();
         loginStep.authorisation(user, password);
-        createCarStep.createCar(carFields);
+        createCarStep.createCar(car);
         softAssert.assertTrue(createCarsPage.checkMessageIdCar().contains("New car ID:"),
                 "Авто не создано");
         softAssert.assertEquals(createCarsPage.checkMessageCreateCar(),
@@ -24,39 +34,41 @@ public class CarTest extends BaseTest {
     }
 
     @Test(priority = 2, testName = "Негативный тест. Проверка сообщения, что авто не создан")
+    @Owner("Biruykov I.D.")
     @Description("Проверка сообщения, что авто не создан")
     public void createCarNotAllFieldCheck() {
         softAssert = new SoftAssert();
         Faker faker = new Faker();
-        CarFields carFields = CarFields.builder()
+        Car car = Car.builder()
                 .engine("Car")
                 .price(faker.number().numberBetween(500, 5000))
                 .build();
         loginStep.authorisation(user, password);
         createCarsPage.open()
                 .isPageOpened()
-                .addCarInfo(carFields)
+                .addCarInfo(car)
                 .clickCreateCar();
         softAssert.assertEquals(createCarsPage.checkMessageCreateCar(),
-                //"Status: Invalid request data",
-                "Status: AxiosError: Request failed with status code 400",
+                "Status: Invalid request data",
+                //"Status: AxiosError: Request failed with status code 400",
                 "Авто не создано");
         softAssert.assertAll();
     }
 
     @Test(priority = 3, testName = "Проверка удаления авто")
+    @Owner("Biruykov I.D.")
     @Description("Проверка удаления авто")
     public void deleteCar() {
         softAssert = new SoftAssert();
         Faker faker = new Faker();
-        CarFields carFields = CarFields.builder()
+        Car car = Car.builder()
                 .engine("Electric")
                 .mark("tesla")
                 .model("model s")
                 .price(faker.number().numberBetween(500, 5000))
                 .build();
         loginStep.authorisation(user, password);
-        createCarStep.createCar(carFields);
+        createCarStep.createCar(car);
         carId = createCarsPage.getValueCarId();
         allDeletePage.open()
                 .isPageOpened()
@@ -68,20 +80,21 @@ public class CarTest extends BaseTest {
     }
 
     @Test(priority = 4, testName = "Проверка, что созданный авто находится в таблице")
+    @Owner("Biruykov I.D.")
     @Description("Проверка, что созданный авто находится в таблице")
     public void checkIdCarInTable() {
         softAssert = new SoftAssert();
         Faker faker = new Faker();
-        CarFields carFields = CarFields.builder()
+        Car car = Car.builder()
                 .engine("Electric")
                 .mark("tesla")
                 .model("model s")
                 .price(faker.number().numberBetween(500, 5000))
                 .build();
         loginStep.authorisation(user, password);
-        createCarStep.createCar(carFields);
+        createCarStep.createCar(car);
         carId = createCarsPage.getValueCarId();
-        readAllUsersPage.open().isPageOpened();
+        readAllCarsPage.open().isPageOpened();
         softAssert.assertTrue(readAllCarsPage.findIdCarInTable(carId),
                 "Авто отсутствует в таблице");
         softAssert.assertAll();

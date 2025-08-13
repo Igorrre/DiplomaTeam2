@@ -5,16 +5,18 @@ import io.qameta.allure.Owner;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import static dto.UserFaker.setUserFieldsFaker;
+import static dto.ui.user.UserFactor.setUserFieldsFaker;
 
 public class AllDeleteUserTest extends BaseTest {
+
     SoftAssert softAssert;
+
     @Test
     @Owner("Kozachek Y.N.")
     @Description("Проверка удаления пользователя код 204 и отсутствие в таблице")
     public void checkStatusCode204() {
         softAssert = new SoftAssert();
-        userFields = setUserFieldsFaker();
+        users = setUserFieldsFaker();
         loginStep.authorisation(user, password);
         userId = createUserStep
                 .getValueUserId();

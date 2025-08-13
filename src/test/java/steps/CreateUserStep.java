@@ -1,17 +1,17 @@
 package steps;
 
-import dto.UserFields;
+import dto.ui.user.Users;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import pages.CreateUserPage;
 
-import static dto.UserFaker.setUserFieldsFaker;
+import static dto.ui.user.UserFactor.setUserFieldsFaker;
 
 public class CreateUserStep {
 
     WebDriver driver;
     CreateUserPage createUserPage;
-    UserFields userFields;
+    Users users;
 
     public CreateUserStep(WebDriver driver) {
         this.driver = driver;
@@ -20,12 +20,12 @@ public class CreateUserStep {
 
     @Step("Получение значения User ID на странице создания пользователя")
     public String getValueUserId() {
-        userFields = setUserFieldsFaker();
+        users = setUserFieldsFaker();
 
         String valueId = createUserPage
                 .open()
                 .isPageOpened()
-                .setValuesToCreateUser(userFields)
+                .setValuesToCreateUser(users)
                 .clickButtonPushToApi().getValueUserId();
 
         return valueId.trim();

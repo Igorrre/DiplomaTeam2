@@ -1,6 +1,6 @@
 package steps;
 
-import dto.CarFields;
+import dto.ui.car.Car;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import pages.CreateCarsPage;
@@ -14,12 +14,12 @@ public class CreateCarStep {
         createCarsPage = new CreateCarsPage(driver);
     }
 
-    @Step("Получение значения User ID на странице создания пользователя")
-    public void createCar(CarFields carFields) {
+    @Step("Создание Car")
+    public void createCar(Car car) {
         createCarsPage
                 .open()
                 .isPageOpened()
-                .addCarInfo(carFields)
+                .addCarInfo(car)
                 .clickCreateCar();
     }
 }

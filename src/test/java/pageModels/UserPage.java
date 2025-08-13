@@ -1,7 +1,7 @@
 package pageModels;
 
-import dto.servicesPOJO.GetUserRequest;
-import dto.servicesPOJO.GetUserResponse;
+import dto.api.user.GetUserRequest;
+import dto.api.user.GetUserResponse;
 
 public class UserPage extends BaseURL {
 

@@ -1,21 +1,23 @@
 package tests.ui;
 
 import com.github.javafaker.Faker;
-import dto.CarFields;
+import dto.ui.car.Car;
 import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import static dto.UserFaker.setUserFieldsFaker;
+import static dto.ui.user.UserFactor.setUserFieldsFaker;
 
 public class BuyCarTest extends BaseTest {
+
     SoftAssert softAssert;
+
     @Test
     @Description("Проверка, что пользователь может купить авто")
     public void checkUserWithCar() {
         softAssert = new SoftAssert();
-        userFields = setUserFieldsFaker();
+        users = setUserFieldsFaker();
         Faker faker = new Faker();
-        CarFields carFields = CarFields.builder()
+        Car car = Car.builder()
                 .engine("Electric")
                 .mark("tesla")
                 .model("model s")
@@ -23,7 +25,7 @@ public class BuyCarTest extends BaseTest {
                 .build();
         loginStep.authorisation(user, password);
         userId = createUserStep.getValueUserId();
-        createCarStep.createCar(carFields);
+        createCarStep.createCar(car);
         carId = createCarsPage.getValueCarId();
         buyOrSellCarPage.open()
             .isPageOpened()

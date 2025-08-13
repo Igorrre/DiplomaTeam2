@@ -1,6 +1,6 @@
 package pages;
 
-import dto.UserFields;
+import dto.ui.user.Users;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
@@ -34,12 +34,12 @@ public class CreateUserPage extends BasePage {
     }
 
     @Step("Внесение значений в поля формы")
-    public CreateUserPage setValuesToCreateUser(UserFields userFields) {
-        new WriteText(driver, "first_name_send").writeText(userFields.getFirstName());
-        new WriteText(driver, "last_name_send").writeText(userFields.getLastName());
-        new WriteText(driver, "age_send").writeText(String.valueOf(userFields.getAge()));
+    public CreateUserPage setValuesToCreateUser(Users user) {
+        new WriteText(driver, "first_name_send").writeText(user.getFirstName());
+        new WriteText(driver, "last_name_send").writeText(user.getLastName());
+        new WriteText(driver, "age_send").writeText(String.valueOf(user.getAge()));
         new ClickValue(driver, "MALE").clickValue();
-        new WriteText(driver, "money_send").writeText(String.valueOf(userFields.getMoney()));
+        new WriteText(driver, "money_send").writeText(String.valueOf(user.getMoney()));
         wait.until(ExpectedConditions.visibilityOfElementLocated(BUTTON_PUSH_TO_API));
         return this;
     }

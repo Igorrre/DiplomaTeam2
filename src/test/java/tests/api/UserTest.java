@@ -1,7 +1,7 @@
 package tests.api;
 
-import dto.servicesPOJO.GetUserRequest;
-import dto.servicesPOJO.GetUserResponse;
+import dto.api.user.GetUserRequest;
+import dto.api.user.GetUserResponse;
 import io.qameta.allure.Description;
 import io.qameta.allure.Owner;
 import org.testng.annotations.Test;

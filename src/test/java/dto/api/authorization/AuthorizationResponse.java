@@ -1,4 +1,4 @@
-package dto.servicesPOJO;
+package dto.api.authorization;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -7,9 +7,8 @@ import lombok.Data;
 
 @Data
 @Builder
-public class GetUserRequest {
-
-    @SerializedName("userId")
+public class AuthorizationResponse {
+    @SerializedName("access_token")
     @Expose
-    public String userId;
+    public String accessToken;
 }

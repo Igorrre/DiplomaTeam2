@@ -1,8 +1,8 @@
-package tests.ui.api;
+package tests.api;
 
 import adapters.AuthorizationAdapter;
-import dto.api.AuthorizationRq;
-import dto.api.AuthorizationRs;
+import dto.api.authorization.AuthorizationRequest;
+import dto.api.authorization.AuthorizationResponse;
 import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -14,11 +14,11 @@ public class AuthorizationTest extends BaseTest {
     @Description("Проверка получения токена для авторизации")
     public void authorization() {
         AuthorizationAdapter authorizationAdapter = new AuthorizationAdapter();
-        AuthorizationRq authorizationRq = AuthorizationRq.builder()
+        AuthorizationRequest authorizationRequest = AuthorizationRequest.builder()
                 .password(password)
                 .username(user)
                 .build();
-        AuthorizationRs rs = authorizationAdapter.authorization(authorizationRq);
+        AuthorizationResponse rs = authorizationAdapter.authorization(authorizationRequest);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertNotNull(rs.getAccessToken(), "Токен не должен быть null");
         softAssert.assertFalse(rs.getAccessToken().isEmpty(), "Токен не должен быть пустым");

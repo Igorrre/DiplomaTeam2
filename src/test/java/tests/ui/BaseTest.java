@@ -1,8 +1,8 @@
 package tests.ui;
 
-import dto.ui.CarFields;
-import dto.ui.HouseFields;
-import dto.ui.UserFields;
+import dto.ui.car.Car;
+import dto.ui.house.House;
+import dto.ui.user.Users;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -27,9 +27,9 @@ import static utils.AllureUtils.takeScreenshot;
 public class BaseTest {
 
     WebDriver driver;
-    UserFields userFields;
-    HouseFields houseFields;
-    CarFields carFields;
+    Users users;
+    House house;
+    Car car;
     CreateHouseStep createHouseStep;
     CreateHousePage createHousePage;
     ReadAllHousePage readAllHousePage;
@@ -64,7 +64,7 @@ public class BaseTest {
             options.addArguments("--disable-notifications");
             options.addArguments("--disable-popup-blocking");
             options.addArguments("--disable-infobars");
-            //options.addArguments("--headless");
+            options.addArguments("--headless");
             driver = new ChromeDriver(options);
         } else if (browser.equalsIgnoreCase("edge")) {
             EdgeOptions options = new EdgeOptions();

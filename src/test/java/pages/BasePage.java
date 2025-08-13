@@ -9,7 +9,7 @@ import java.time.Duration;
 public abstract class BasePage {
 
     protected final String BASE_URL = "http://82.142.167.37:4881/";
-    protected final String ALL_READ_CAR_URL = "http://82.142.167.37:4881/#/read/cars";
+    protected final String ALL_READ_CAR_URL = BASE_URL + "#/read/cars";
     protected final String CREATE_CARS_URL = "http://82.142.167.37:4881/#/create/cars";
     protected final String ALL_DELETE_URL = "http://82.142.167.37:4881/#/delete/all";
     protected final String CREATE_USER_URL = "http://82.142.167.37:4881/#/create/user";

@@ -3,17 +3,19 @@ package tests.ui;
 import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import static dto.HouseFaker.getHouse;
+import static dto.ui.house.HouseFactory.getHouse;
 
 public class HouseTest extends BaseTest{
+
     SoftAssert softAssert;
+
     @Test(priority = 1, testName = "Позитивный тест Проверка сообщения, что дом создан")
     @Description("Проверка сообщения, что дом создан")
     public void createHouse() {
         softAssert = new SoftAssert();
-        houseFields = getHouse();
+        house = getHouse();
         loginStep.authorisation(user, password);
-        createHouseStep.createHouse(houseFields);
+        createHouseStep.createHouse(house);
         softAssert.assertTrue(createHousePage.checkMessageIdHouse().contains("New house ID:"),
                 "Дом не создан");
         softAssert.assertEquals(createHousePage.checkMessageCreateHouse(),
@@ -40,9 +42,9 @@ public class HouseTest extends BaseTest{
     @Description("Проверка удаления дома")
     public void deleteHouse() {
         softAssert = new SoftAssert();
-        houseFields = getHouse();
+        house = getHouse();
         loginStep.authorisation(user, password);
-        createHouseStep.createHouse(houseFields);
+        createHouseStep.createHouse(house);
         houseId = createHousePage.getValueHouseId();
         allDeletePage.open()
                 .isPageOpened()
@@ -57,9 +59,9 @@ public class HouseTest extends BaseTest{
     @Description("Проверка, что созданный дом находится в таблице")
     public void checkIdHouseInTable() {
         softAssert = new SoftAssert();
-        houseFields = getHouse();
+        house = getHouse();
         loginStep.authorisation(user, password);
-        createHouseStep.createHouse(houseFields);
+        createHouseStep.createHouse(house);
         houseId = createHousePage.getValueHouseId();
         readAllHousePage.open().isPageOpened();
         softAssert.assertTrue(readAllHousePage.findIdHouseInTable(houseId),

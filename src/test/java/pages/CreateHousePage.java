@@ -1,6 +1,6 @@
 package pages;
 
-import dto.HouseFields;
+import dto.ui.house.House;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
@@ -23,6 +23,7 @@ public class CreateHousePage extends BasePage {
 
     @Step("Открытие страницы создания дома")
     public CreateHousePage open() {
+        log.info("Open page new house");
         driver.get(CREATE_HOUSE_URL);
         wait.until(ExpectedConditions.visibilityOfElementLocated(HOUSE_FIELD));
         return this;
@@ -31,29 +32,31 @@ public class CreateHousePage extends BasePage {
     @Override
     @Step("Проверка открытия страницы")
     public CreateHousePage isPageOpened() {
+        log.info("Page is open");
         wait.until(ExpectedConditions.visibilityOfElementLocated(HOUSE_FIELD));
         return this;
     }
 
     @Step("Заполнение карточки дома Faker")
-    public CreateHousePage addHouseInfo(HouseFields houseFields) {
-        log.info("floor_send: {}", houseFields.getFloor_send());
-        new Input(driver, "floor_send").write(String.valueOf(houseFields.getFloor_send()));
-        log.info("price_send: {}", houseFields.getPrice_send());
-        new Input(driver, "price_send").write(String.valueOf(houseFields.getPrice_send()));
-        log.info("parking_first_send: {}", houseFields.getParking_first_send());
-        new Input(driver, "parking_first_send").write(String.valueOf(houseFields.getParking_first_send()));
-        log.info("parking_second_send: {}", houseFields.getParking_second_send());
-        new Input(driver, "parking_second_send").write(String.valueOf(houseFields.getParking_second_send()));
-        log.info("parking_third_send: {}", houseFields.getParking_third_send());
-        new Input(driver, "parking_third_send").write(String.valueOf(houseFields.getParking_third_send()));
-        log.info("parking_fourth_send: {}", houseFields.getParking_fourth_send());
-        new Input(driver, "parking_fourth_send").write(String.valueOf(houseFields.getParking_fourth_send()));
+    public CreateHousePage addHouseInfo(House house) {
+        log.info("floor_send: {}", house.getFloor_send());
+        new Input(driver, "floor_send").write(String.valueOf(house.getFloor_send()));
+        log.info("price_send: {}", house.getPrice_send());
+        new Input(driver, "price_send").write(String.valueOf(house.getPrice_send()));
+        log.info("parking_first_send: {}", house.getParking_first_send());
+        new Input(driver, "parking_first_send").write(String.valueOf(house.getParking_first_send()));
+        log.info("parking_second_send: {}", house.getParking_second_send());
+        new Input(driver, "parking_second_send").write(String.valueOf(house.getParking_second_send()));
+        log.info("parking_third_send: {}", house.getParking_third_send());
+        new Input(driver, "parking_third_send").write(String.valueOf(house.getParking_third_send()));
+        log.info("parking_fourth_send: {}", house.getParking_fourth_send());
+        new Input(driver, "parking_fourth_send").write(String.valueOf(house.getParking_fourth_send()));
         return this;
     }
 
     @Step("Клик по кнопке PUSH TO API")
     public void clickCreateHouse() {
+        log.info("Click button PUSH TO API");
         wait.until(ExpectedConditions.visibilityOfElementLocated(PUSH_TO_API));
         driver.findElement(PUSH_TO_API).click();
     }
@@ -68,27 +71,13 @@ public class CreateHousePage extends BasePage {
     @Step("Проверка сообщения о создании ID дома")
     public String checkMessageIdHouse() {
         log.info("Get message ID");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(GET_ID));
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(GET_ID, "New house ID:"));
         return driver.findElement(GET_ID).getText();
     }
 
-//    @Step("Получение ID дома")
-//    public String saveIdHouse(SaveTestId id) {
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(GET_ID));
-//        String savedText = driver.findElement(GET_ID).getText();
-//        String houseId = savedText.replaceAll("\\D", "");
-//        id.setHouseId(houseId);
-//        return houseId;
-//    }
-
-    @Step("Клик по вкладке All DELETE")
-    public AllDeletePage clickAllDelete() {
-        driver.findElement(ALL_DELETE_FIELD).click();
-        return new AllDeletePage(driver);
-    }
-
-    @Step("Получение значения Car ID")
+    @Step("Получение значения ID дома")
     public String getValueHouseId() {
+        log.info("Get house ID");
         wait.until(ExpectedConditions.textToBe(GET_STATUS, "Status: Successfully pushed, code: 201"));
         String value = driver.findElement(GET_ID).getText();
         if (value.contains(":")) {

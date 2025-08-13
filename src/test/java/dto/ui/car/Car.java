@@ -1,4 +1,4 @@
-package dto;
+package dto.ui.car;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,13 +8,13 @@ import lombok.Data;
 @AllArgsConstructor
 @Builder
 
-public class CarFields {
+public class Car {
     @Builder.Default
-    String engine = "Electric";
+    String engine = "";
     @Builder.Default
-    String mark = "tesla";
+    String mark = "";
     @Builder.Default
-    String model = "model s";
+    String model = "";
     @Builder.Default
-    int price = Integer.parseInt("3333");
+    Integer price = 0;
 }

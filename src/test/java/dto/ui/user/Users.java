@@ -1,4 +1,4 @@
-package dto;
+package dto.ui.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,14 +7,14 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 @Builder
-public class UserFields {
+public class Users {
 
     @Builder.Default
     String firstName = "";
     @Builder.Default
     String lastName = "";
     @Builder.Default
-    int age = Integer.parseInt("");
+    Integer age = 0;
     @Builder.Default
-    int money = Integer.parseInt("");
+    Integer money = 0;
 }

@@ -1,11 +1,11 @@
-package dto;
+package dto.ui.car;
 
 import com.github.javafaker.Faker;
 
-public class CarFaker {
-    public static CarFields getCar(String engine, String mark, String model ) {
+public class CarFactory {
+    public static Car getCar(String engine, String mark, String model ) {
         Faker faker = new Faker();
-        return new CarFields(
+        return new Car(
                 engine,
                 mark,
                 model,

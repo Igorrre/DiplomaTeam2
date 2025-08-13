@@ -1,4 +1,4 @@
-package dto.api;
+package dto.api.authorization;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class AuthorizationRq {
+public class AuthorizationRequest {
     @SerializedName("password")
     @Expose
     public String password;

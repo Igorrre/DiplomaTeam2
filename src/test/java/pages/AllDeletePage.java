@@ -27,6 +27,7 @@ public class AllDeletePage extends BasePage {
 
     @Step("Открытие страницы для удаления")
     public AllDeletePage open() {
+        log.info("Open page All DELETE");
         driver.get(ALL_DELETE_URL);
         wait.until(ExpectedConditions.visibilityOfElementLocated(DELETE_FIELD_CAR));
         return this;
@@ -35,19 +36,22 @@ public class AllDeletePage extends BasePage {
     @Override
     @Step("Проверка открытия страницы")
     public AllDeletePage isPageOpened() {
+        log.info("Page is open");
         wait.until(ExpectedConditions.visibilityOfElementLocated(DELETE_FIELD_CAR));
         return this;
     }
 
-    @Step("Удаление тестового авто по Id")
-    public void deleteTestCarId(String SaveTestId) {
-        driver.findElement(DELETE_FIELD_CAR).sendKeys(SaveTestId);
+    @Step("Удаление тестового авто по Id: {saveTestId}")
+    public void deleteTestCarId(String saveTestId) {
+        log.info("Delete car Id");
+        driver.findElement(DELETE_FIELD_CAR).sendKeys(saveTestId);
+        log.info("Click delete car");
         driver.findElement(DELETE_BUTTON_CAR).click();
     }
 
     @Step("Получение сообщения об удалении авто")
     public String getMessageDeleteCar() {
-        log.info("Get message delete");
+        log.info("Get message delete car");
         wait.until(ExpectedConditions.visibilityOfElementLocated(STATUS_FIELD_CAR));
         return driver.findElement(STATUS_FIELD_CAR).getText();
     }
@@ -66,10 +70,12 @@ public class AllDeletePage extends BasePage {
         return driver.findElement(MESSAGE_USER_TEXT).getText();
     }
 
-    @Step("Удаление тестового дома по Id")
+    @Step("Удаление тестового дома по Id: {saveTestId}")
     public void deleteTestHouseId(String SaveTestId) {
+        log.info("Delete house Id");
         wait.until(ExpectedConditions.visibilityOfElementLocated(DELETE_FIELD_HOUSE));
         driver.findElement(DELETE_FIELD_HOUSE).sendKeys(SaveTestId);
+        log.info("Click delete house");
         wait.until(ExpectedConditions.visibilityOfElementLocated(DELETE_BUTTON_HOUSE));
         driver.findElement(DELETE_BUTTON_HOUSE).click();
     }
