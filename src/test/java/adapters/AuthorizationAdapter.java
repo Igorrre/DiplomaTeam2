@@ -27,7 +27,7 @@ public class AuthorizationAdapter {
                 .post(BASE_URI + "login")
                 .then()
                 .log().all()
-                .statusCode(200)
+                .statusCode(202)
                 .extract()
                 .as(AuthorizationRs.class, ObjectMapperType.GSON);
 
