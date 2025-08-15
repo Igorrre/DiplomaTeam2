@@ -1,13 +1,17 @@
 package tests.api;
 
+import adapters.UserAdapter;
 import dto.api.user.GetUserRequest;
 import dto.api.user.GetUserResponse;
 import io.qameta.allure.Description;
 import io.qameta.allure.Owner;
 import org.testng.annotations.Test;
-import pageModels.BaseTest;
+import org.testng.asserts.SoftAssert;
 
-public class UserTest extends BaseTest {
+public class UserTest {
+
+    SoftAssert softAssert = new SoftAssert();
+    UserAdapter userAdapter = new UserAdapter();
 
     @Test
     @Owner("Kozachek Y.N.")
@@ -18,13 +22,14 @@ public class UserTest extends BaseTest {
                 .builder()
                 .userId("8018")
                 .build();
-        GetUserResponse response = userPage.getUser(getUserRequest);
+        GetUserResponse response = userAdapter.getUser(getUserRequest);
 
-        softAssert.assertEquals(response.getId(), 8018);
-        softAssert.assertEquals(response.getFirstName(), "qwerty1112");
-        softAssert.assertEquals(response.getSecondName(), "qwerty1112");
-        softAssert.assertEquals(response.getAge(), 121);
-        softAssert.assertEquals(response.getSex(), "MALE");
-        softAssert.assertEquals(response.getMoney(), 121212.00);
+        softAssert.assertEquals(response.getId(), 8018, "Не сошлось");
+        softAssert.assertEquals(response.getFirstName(), "qwerty1112", "Не сошлось");
+        softAssert.assertEquals(response.getSecondName(), "qwerty1112", "Не сошлось");
+        softAssert.assertEquals(response.getAge(), 121, "Не сошлось");
+        softAssert.assertEquals(response.getSex(), "MALE", "Не сошлось");
+        softAssert.assertEquals(response.getMoney(), 121212.00, "Не сошлось");
+        softAssert.assertAll();
     }
 }

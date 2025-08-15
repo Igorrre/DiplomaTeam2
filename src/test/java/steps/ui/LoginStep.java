@@ -1,4 +1,4 @@
-package steps;
+package steps.ui;
 
 import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
