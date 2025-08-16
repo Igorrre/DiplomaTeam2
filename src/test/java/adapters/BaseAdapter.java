@@ -10,6 +10,8 @@ import static io.restassured.RestAssured.given;
 public class BaseAdapter {
 
     public final String BASE_URI = "http://82.142.167.37:4879/";
+    public final String CREATE_USER_URI = BASE_URI + "user";
+    public final String GET_USER_URI = BASE_URI + "user/8018";
     public final String CAR_URI = "http://82.142.167.37:4879/car";
 
     public Gson gson = new GsonBuilder()

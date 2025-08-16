@@ -14,10 +14,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import pages.*;
-import steps.CreateCarStep;
-import steps.CreateHouseStep;
-import steps.CreateUserStep;
-import steps.LoginStep;
+import steps.ui.CreateCarStep;
+import steps.ui.CreateHouseStep;
+import steps.ui.CreateUserStep;
+import steps.ui.LoginStep;
 import utils.PropertyReader;
 
 import java.time.Duration;

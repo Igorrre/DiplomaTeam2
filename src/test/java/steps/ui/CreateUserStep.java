@@ -1,4 +1,4 @@
-package steps;
+package steps.ui;
 
 import dto.ui.user.Users;
 import io.qameta.allure.Step;
