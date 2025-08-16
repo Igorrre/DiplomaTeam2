@@ -33,6 +33,7 @@ public class CarTest extends GetTokenAdapter {
         softAssert.assertEquals(carResponse.getModel(), "x", "Марка не совпадает");
         softAssert.assertEquals(carResponse.getEngineType(), "Diesel", "Тип двигателя не совпадает");
         softAssert.assertEquals(carResponse.getPrice(), 6888.88, "Цена не совпадает");
+        softAssert.assertNotNull(carResponse.getId(), "ID авто равен null");
         createdCarId = carResponse.getId();
 
         softAssert.assertAll();
@@ -50,6 +51,7 @@ public class CarTest extends GetTokenAdapter {
         softAssert.assertEquals(rsReadCar.getModel(), "x", "Марка не совпадает");
         softAssert.assertEquals(rsReadCar.getEngineType(), "Diesel", "Тип двигателя не совпадает");
         softAssert.assertEquals(rsReadCar.getPrice(), 6888.88, "Цена не совпадает");
+        softAssert.assertNotNull(rsReadCar.getId(), "ID авто равен null");
 
         softAssert.assertAll();
     }
@@ -72,6 +74,7 @@ public class CarTest extends GetTokenAdapter {
         softAssert.assertEquals(rsUpdateCar.getModel(), "xxx", "Марка не совпадает");
         softAssert.assertEquals(rsUpdateCar.getEngineType(), "Diesel", "Тип двигателя не совпадает");
         softAssert.assertEquals(rsUpdateCar.getPrice(), 7777.77, "Цена не совпадает");
+        softAssert.assertNotNull(rsUpdateCar.getId(), "ID авто равен null");
 
         softAssert.assertAll();
     }

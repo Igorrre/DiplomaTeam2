@@ -1,24 +1,27 @@
 package dto.api.car;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 public class CarResponse {
-    @JsonProperty("id")
-    private Integer id;
 
-    @JsonProperty("engineType")
-    private String engineType;
-
-    @JsonProperty("mark")
-    private String mark;
-
-    @JsonProperty("model")
-    private String model;
-
-    @JsonProperty("price")
-    private Double price;
+    @SerializedName("engineType")
+    @Expose
+    public String engineType;
+    @SerializedName("id")
+    @Expose
+    public Integer id;
+    @SerializedName("mark")
+    @Expose
+    public String mark;
+    @SerializedName("model")
+    @Expose
+    public String model;
+    @SerializedName("price")
+    @Expose
+    public Double price;
 }
