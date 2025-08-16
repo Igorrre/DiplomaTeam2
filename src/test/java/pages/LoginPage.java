@@ -17,7 +17,7 @@ public class LoginPage extends BasePage {
 
     @Step("Открытие страницы входа в систему")
     public LoginPage open() {
-        driver.get(BASE_URL);
+        driver.get(BASE_URI);
         wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_FIELD));
         return this;
     }

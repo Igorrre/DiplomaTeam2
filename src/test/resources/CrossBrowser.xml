@@ -11,7 +11,9 @@
             <class name="tests.ui.AddMoneyUserTest"/>
             <class name="tests.ui.AllDeleteUserTest"/>
             <class name="tests.ui.BuyCarTest"/>
-            <parameter name="browser" value="chrome"></parameter>
+            <parameter name="browser" value="chrome">
+
+            </parameter>
         </classes>
     </test> <!-- Test -->
     <test name="Edge">
@@ -20,7 +22,9 @@
             <class name="tests.ui.CreateUserTest"/>
             <class name="tests.ui.HouseTest"/>
             <class name="tests.ui.ReadAllUsersTest"/>
-            <parameter name="browser" value="edge"></parameter>
+            <parameter name="browser" value="edge">
+
+            </parameter>
         </classes>
     </test> <!-- Test -->
 </suite>
