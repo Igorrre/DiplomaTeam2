@@ -4,8 +4,6 @@ import dto.api.authorization.AuthorizationRequest;
 import dto.api.authorization.AuthorizationResponse;
 import io.restassured.mapper.ObjectMapperType;
 
-import static io.restassured.RestAssured.given;
-
 public class AuthorizationAdapter extends BaseAdapter {
 
     public AuthorizationResponse authorization(AuthorizationRequest authorizationRequest) {
@@ -18,6 +16,5 @@ public class AuthorizationAdapter extends BaseAdapter {
                 .statusCode(202)
                 .extract()
                 .as(AuthorizationResponse.class, ObjectMapperType.GSON);
-
     }
 }
