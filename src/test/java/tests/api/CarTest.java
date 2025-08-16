@@ -1,7 +1,7 @@
 package tests.api;
 
 import adapters.CarAdapter;
-import adapters.GetTokenStep;
+import adapters.GetTokenAdapter;
 import dto.api.car.CarRequest;
 import dto.api.car.CarResponse;
 import io.qameta.allure.Description;
@@ -9,7 +9,7 @@ import io.qameta.allure.Owner;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class CarTest extends GetTokenStep {
+public class CarTest extends GetTokenAdapter {
 
     SoftAssert softAssert;
     private int createdCarId;

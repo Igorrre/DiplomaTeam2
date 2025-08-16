@@ -5,7 +5,7 @@ import dto.api.authorization.AuthorizationResponse;
 import io.qameta.allure.Step;
 import tests.ui.BaseTest;
 
-public class GetTokenStep extends BaseTest {
+public class GetTokenAdapter extends BaseTest {
 
     @Step("Получить accessToken через API авторизации")
     public String getAccessToken() {
