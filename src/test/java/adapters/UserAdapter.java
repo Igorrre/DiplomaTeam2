@@ -1,9 +1,6 @@
 package adapters;
 
-import dto.api.user.CreateUserRequest;
-import dto.api.user.CreateUserResponse;
-import dto.api.user.GetUserRequest;
-import dto.api.user.GetUserResponse;
+import dto.api.user.*;
 
 public class UserAdapter extends BaseAdapter {
 
@@ -30,5 +27,17 @@ public class UserAdapter extends BaseAdapter {
                 .statusCode(201)
                 .extract()
                 .as(CreateUserResponse.class);
+    }
+
+    public AddMoneyUserResponse addMoneyUser(String token, int id, int money) {
+        return spec
+                .header("Authorization", "Bearer " + token)
+                .when()
+                .post(ADD_MONEY_USER_URI + "user/" + id + "/money/" + money)
+                .then()
+                .log().all()
+                .statusCode(200)
+                .extract()
+                .as(AddMoneyUserResponse.class);
     }
 }

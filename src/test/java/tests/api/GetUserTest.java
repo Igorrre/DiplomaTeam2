@@ -8,7 +8,7 @@ import io.qameta.allure.Owner;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class UserTest {
+public class GetUserTest {
 
     SoftAssert softAssert = new SoftAssert();
     UserAdapter userAdapter = new UserAdapter();
@@ -29,7 +29,7 @@ public class UserTest {
         softAssert.assertEquals(response.getSecondName(), "qwerty1112", "Не сошлось");
         softAssert.assertEquals(response.getAge(), 121, "Не сошлось");
         softAssert.assertEquals(response.getSex(), "MALE", "Не сошлось");
-        softAssert.assertEquals(response.getMoney(), 121212.00, "Не сошлось");
+        softAssert.assertEquals(response.getMoney(), 126262.0, "Не сошлось");
         softAssert.assertAll();
     }
 }

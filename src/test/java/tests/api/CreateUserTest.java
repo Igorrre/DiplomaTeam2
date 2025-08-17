@@ -28,7 +28,7 @@ public class CreateUserTest extends BaseTest {
                 .secondName("Zadnaja")
                 .sex("MALE")
                 .build();
-        CreateUserResponse response = userAdapter.createUser(createUserRequest, authorizationStep.authorisationApi(user, password));
+        CreateUserResponse response = userAdapter.createUser(createUserRequest, authorizationStep.authorisationApi());
 
         softAssert.assertEquals(response.getFirstName(), createUserRequest.getFirstName(), "Не сошлось");
         softAssert.assertEquals(response.getSecondName(), createUserRequest.getSecondName(), "Не сошлось");

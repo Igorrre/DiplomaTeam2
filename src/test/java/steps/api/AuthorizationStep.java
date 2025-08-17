@@ -9,7 +9,7 @@ import tests.ui.BaseTest;
 public class AuthorizationStep extends BaseTest {
 
     @Step("Авторизация пользователя API")
-    public String authorisationApi(String user, String password) {
+    public String authorisationApi() {
         AuthorizationAdapter authorizationAdapter = new AuthorizationAdapter();
         AuthorizationRequest authorizationRequest = AuthorizationRequest.builder()
                 .password(password)

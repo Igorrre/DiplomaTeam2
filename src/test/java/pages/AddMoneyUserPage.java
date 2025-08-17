@@ -21,18 +21,21 @@ public class AddMoneyUserPage extends BasePage {
 
     @Override
     public AddMoneyUserPage isPageOpened() {
+        log.info("Page is open");
         wait.until(ExpectedConditions.visibilityOfElementLocated(INPUT_USER_ID));
         return this;
     }
 
     @Step("Открытие страницы добавление денег пользователю")
     public AddMoneyUserPage open() {
+        log.info("Page add money is open");
         driver.get(ADD_MONEY_TO_USER);
         return this;
     }
 
     @Step("Вписать User ID")
     public AddMoneyUserPage setUserId(String id) {
+        log.info("Set ID: {}", id);
         wait.until(ExpectedConditions.visibilityOfElementLocated(INPUT_USER_ID));
         driver.findElement(INPUT_USER_ID).sendKeys(id);
         return this;
@@ -40,6 +43,7 @@ public class AddMoneyUserPage extends BasePage {
 
     @Step("Вписать сумму в тугриках")
     public AddMoneyUserPage setMoney(String money) {
+        log.info("Set Money: {}", money);
         wait.until(ExpectedConditions.visibilityOfElementLocated(INPUT_MONEY));
         driver.findElement(INPUT_MONEY).sendKeys(money);
         return this;
@@ -47,18 +51,21 @@ public class AddMoneyUserPage extends BasePage {
 
     @Step("Нажать кнопку PUSH TO API")
     public AddMoneyUserPage clickButtonPushToApi() {
+        log.info("Click Button Push To Api");
         driver.findElement(BUTTON_PUSH_TO_API).click();
         return this;
     }
 
     @Step("Получение текста со статус кодом")
     public String getTextValueStatusCode() {
+        log.info("Get Text Value Status Code");
         wait.until(ExpectedConditions.textToBe(VALUE_STATUS_CODE, "Status: Successfully pushed, code: 200"));
         return driver.findElement(VALUE_STATUS_CODE).getText();
     }
 
     @Step("Получение значения новой суммы у пользователя")
     public String getNewAmountOfMoney() {
+        log.info("Get New Amount Of Money");
         wait.until(ExpectedConditions.textToBe(VALUE_STATUS_CODE, "Status: Successfully pushed, code: 200"));
         return driver.findElement(NEW_USER_MONEY).getText().trim();
     }
