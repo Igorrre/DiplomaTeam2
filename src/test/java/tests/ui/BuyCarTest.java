@@ -3,6 +3,7 @@ package tests.ui;
 import com.github.javafaker.Faker;
 import dto.ui.car.Car;
 import io.qameta.allure.Description;
+import io.qameta.allure.Owner;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import static dto.ui.user.UserFactor.setUserFieldsFaker;
@@ -11,7 +12,9 @@ public class BuyCarTest extends BaseTest {
 
     SoftAssert softAssert;
 
-    @Test
+    @Test (testName = "Покупка авто пользователем",
+            description = "Проверка, что пользователь может купить авто")
+    @Owner("Bulycheva D.A.")
     @Description("Проверка, что пользователь может купить авто")
     public void checkUserWithCar() {
         softAssert = new SoftAssert();

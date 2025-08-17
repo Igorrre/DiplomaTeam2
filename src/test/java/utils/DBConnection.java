@@ -13,8 +13,6 @@ public class DBConnection extends BaseTest {
     private ResultSet result = null;
 
     private static final String URL = "jdbc:postgresql://82.142.167.37:4832/pflb_trainingcenter";
-//    private static final String USER = "pflb-at-read";
-//    private static final String PASSWORD = "PflbQaTraining2354";
 
     public void connect() {
         try {

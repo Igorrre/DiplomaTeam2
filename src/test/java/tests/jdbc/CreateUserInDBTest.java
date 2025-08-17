@@ -20,7 +20,8 @@ public class CreateUserInDBTest extends BaseTest {
     UserAdapter userAdapter = new UserAdapter();
     AuthorizationStep authorizationStep = new AuthorizationStep();
 
-    @Test
+    @Test(testName = "БД-тест. Создание пользователя",
+            description = "Проверка записи в БД при создании пользователя")
     @Owner("Bulycheva D.A.")
     @Description("Проверка пользователя в БД")
     public void checkCreateUserInDateBase() throws SQLException {
