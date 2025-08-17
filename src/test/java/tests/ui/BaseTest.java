@@ -53,6 +53,8 @@ public class BaseTest {
     protected String newMoneyValue;
     protected String user = System.getProperty("user", PropertyReader.getProperty("user"));
     protected String password = System.getProperty("password", PropertyReader.getProperty("password"));
+    protected String user1 = System.getProperty("user1", PropertyReader.getProperty("user1"));
+    protected String password1 = System.getProperty("password1", PropertyReader.getProperty("password1"));
 
     @BeforeMethod(alwaysRun = true, description = "Настройка браузера")
     public void setup(@Optional("chrome") String browser, ITestContext iTestContext) {

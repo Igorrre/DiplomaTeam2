@@ -4,13 +4,16 @@ import adapters.AuthorizationAdapter;
 import dto.api.authorization.AuthorizationRequest;
 import dto.api.authorization.AuthorizationResponse;
 import io.qameta.allure.Description;
+import io.qameta.allure.Owner;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import tests.ui.BaseTest;
 
 public class AuthorizationTest extends BaseTest {
 
-    @Test
+    @Test(testName = "API-тест. Получение токена для авторизации",
+            description = "Проверка получения токена для авторизации")
+    @Owner("Bulycheva D.A.")
     @Description("Проверка получения токена для авторизации")
     public void authorization() {
         AuthorizationAdapter authorizationAdapter = new AuthorizationAdapter();

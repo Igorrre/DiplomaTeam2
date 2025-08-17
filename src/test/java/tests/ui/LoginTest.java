@@ -1,6 +1,7 @@
 package tests.ui;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Owner;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -8,7 +9,9 @@ public class LoginTest extends BaseTest {
 
     SoftAssert softAssert;
 
-    @Test
+    @Test(testName = "Вход в систему с валидными данными",
+            description = "Проверка, что пользователь может войти в систему, когда вводит валидные данные")
+    @Owner("Bulycheva D.A.")
     @Description("Проверка, что пользователь может войти в систему, когда вводит валидные данные")
     public void checkLogin() {
         softAssert = new SoftAssert();
@@ -21,7 +24,9 @@ public class LoginTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test
+    @Test(testName = "Вход в систему с невалидными данными",
+            description = "Проверка, что пользователь не может войти в систему, когда вводит невалидные данные")
+    @Owner("Bulycheva D.A.")
     @Description("Проверка, что пользователь не может войти в магазин, когда вводит невалидные данные")
     public void checkLoginWithNegativeValue() {
         softAssert = new SoftAssert();
@@ -34,7 +39,9 @@ public class LoginTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test
+    @Test(testName = "Вход в систему с невалидным email",
+            description = "Проверка, что пользователь не может войти в систему с некорректным email")
+    @Owner("Bulycheva D.A.")
     @Description("Проверка, что пользователь не может войти в систему с некорректным email")
     public void checkEmailField() {
         softAssert = new SoftAssert();
@@ -47,7 +54,9 @@ public class LoginTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test
+    @Test(testName = "Вход в систему с невалидным паролем",
+            description = "Проверка, что пользователь не может войти в систему с некорректным паролем")
+    @Owner("Bulycheva D.A.")
     @Description("Проверка, что пользователь не может войти в систему с некорректным паролем")
     public void checkPasswordField() {
         softAssert = new SoftAssert();
