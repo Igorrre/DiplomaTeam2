@@ -20,10 +20,10 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      USER: ${(secrets.USER)}
-      PASSWORD: ${(secrets.PASSWORD)}
-      USER1: ${(secrets.USER1)}
-      PASSWORD1: ${(secrets.PASSWORD1)}
+      USER: ${{secrets.USER}}
+      PASSWORD: ${{secrets.PASSWORD}}
+      USER1: ${{secrets.USER1}}
+      PASSWORD1: ${{secrets.PASSWORD1}}
 
     steps:
     - name: Checkout
