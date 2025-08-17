@@ -1,24 +1,25 @@
 package utils;
 
 import lombok.extern.log4j.Log4j2;
+import tests.ui.BaseTest;
 
 import java.sql.*;
 
 @Log4j2
-public class DBConnection {
+public class DBConnection extends BaseTest {
 
     private Connection connect = null;
     private Statement statement = null;
     private ResultSet result = null;
 
     private static final String URL = "jdbc:postgresql://82.142.167.37:4832/pflb_trainingcenter";
-    private static final String USER = "pflb-at-read";
-    private static final String PASSWORD = "PflbQaTraining2354";
+//    private static final String USER = "pflb-at-read";
+//    private static final String PASSWORD = "PflbQaTraining2354";
 
     public void connect() {
         try {
             log.info("Access to the database");
-            connect = DriverManager.getConnection(URL, USER, PASSWORD);
+            connect = DriverManager.getConnection(URL, user1, password1);
             statement = connect.createStatement();
         } catch (SQLException e) {
             log.error("Connection cannot be established");
