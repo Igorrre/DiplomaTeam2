@@ -23,7 +23,7 @@ public class HouseTest extends GetTokenAdapter {
     @Test(priority = 1, testName = "Проверка создания дома")
     @Owner("Biruykov I.D.")
     @Description("Проверка создания дома")
-    public void createHouse() throws SQLException {
+    public void checkCreateHouseInDateBase() throws SQLException {
         accessToken = getAccessToken(); // Получение токена
         HouseAdapter houseAdapter = new HouseAdapter();
         HouseRequest houseRequest = HouseRequest.builder()
@@ -52,14 +52,14 @@ public class HouseTest extends GetTokenAdapter {
                 System.out.println("Стоимость: " + result.getInt("price"));
 
                 softAssert = new SoftAssert();
-                softAssert.assertEquals(result.getInt("id"), createdHouseId, "ID Авто не найден");
+                softAssert.assertEquals(result.getInt("id"), createdHouseId, "ID Дома не найден");
                 softAssert.assertEquals(rsCreateHouse.getFloorCount(), 1, "Количество этажей не совпадает");
                 softAssert.assertEquals(rsCreateHouse.getPrice(), 1000, "Стоимость дома не совпадает");
 
                 softAssert.assertAll();
             } else {
-                System.out.println("Пользователь с ID " + createdHouseId + " не найден");
-                softAssert.fail("Пользователь не найден в БД");
+                System.out.println("Дом с ID " + createdHouseId + " не найден");
+                softAssert.fail("Дом не найден в БД");
             }
         } finally {
             connection.close();

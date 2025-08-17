@@ -58,8 +58,8 @@ public class CarTest extends GetTokenAdapter {
                 softAssert.assertEquals(result.getString("type_name"), "Diesel", "Тип двигателя не совпадает");
                 softAssert.assertEquals(result.getDouble("price"), 6888.88, "Цена не совпадает");
             } else {
-                System.out.println("Пользователь с ID " + createdCarId + " не найден");
-                softAssert.fail("Пользователь не найден в БД");
+                System.out.println("Авто с ID " + createdCarId + " не найден");
+                softAssert.fail("Авто не найден в БД");
             }
         } finally {
             connection.close();
