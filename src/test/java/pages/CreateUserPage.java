@@ -23,18 +23,21 @@ public class CreateUserPage extends BasePage {
 
     @Override
     public CreateUserPage isPageOpened() {
+        log.info("Page is open");
         wait.until(ExpectedConditions.visibilityOfElementLocated(BUTTON_PUSH_TO_API));
         return this;
     }
 
     @Step("Открытие страницы создания нового пользователя")
     public CreateUserPage open() {
+        log.info("Page Create User is open");
         driver.get(CREATE_USER_URL);
         return this;
     }
 
     @Step("Внесение значений в поля формы")
     public CreateUserPage setValuesToCreateUser(Users user) {
+        log.info("Set Values To Create User: {}", user);
         new WriteText(driver, "first_name_send").writeText(user.getFirstName());
         new WriteText(driver, "last_name_send").writeText(user.getLastName());
         new WriteText(driver, "age_send").writeText(String.valueOf(user.getAge()));
@@ -46,18 +49,21 @@ public class CreateUserPage extends BasePage {
 
     @Step("Нажать кнопку PUSH TO API")
     public CreateUserPage clickButtonPushToApi() {
+        log.info("Click Button Push To Api");
         driver.findElement(BUTTON_PUSH_TO_API).click();
         return this;
     }
 
     @Step("Получение текста со статус кодом")
     public String getTextValueStatusCode() {
+        log.info("Get Text Value Status Code");
         wait.until(ExpectedConditions.textToBe(VALUE_STATUS_CODE, "Status: Successfully pushed, code: 201"));
         return driver.findElement(VALUE_STATUS_CODE).getText();
     }
 
     @Step("Получение значения User ID")
     public String getValueUserId() {
+        log.info("Get Value User Id");
         wait.until(ExpectedConditions.textToBe(VALUE_STATUS_CODE, "Status: Successfully pushed, code: 201"));
         String value = driver.findElement(NEW_USER_ID).getText();
         if (value.contains(":")) {
@@ -70,6 +76,7 @@ public class CreateUserPage extends BasePage {
 
     @Step("Получение денеХ у пользователя")
     public String getMoneyValue() {
+        log.info("Get Money Value");
         wait.until(ExpectedConditions.textToBe(VALUE_STATUS_CODE, "Status: Successfully pushed, code: 201"));
         return driver.findElement(INPUT_USER_MONEY).getAttribute("valueAsNumber").trim();
     }

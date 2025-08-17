@@ -19,18 +19,21 @@ public class ReadAllUsersPage extends BasePage {
 
     @Override
     public BasePage isPageOpened() {
+        log.info("Page is open");
         wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_ID_IN_TABLE));
         return this;
     }
 
     @Step("Открытие страницы просмотра всех созданных пользователей")
     public ReadAllUsersPage open() {
+        log.info("Page Read All Users is open");
         driver.get(READ_ALL_USERS_URL);
         return this;
     }
 
     @Step("Поиск нужного ID на странице")
     public boolean findIdInTable(String targetValue) {
+        log.info("Set ID: {}", targetValue);
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy((ALL_FIND_TD_IN_TABLE)));
         String script = "return document.body.innerText.toLowerCase().includes('" + targetValue.toLowerCase() + "');";
         Boolean result = (Boolean) ((JavascriptExecutor) driver).executeScript(script);

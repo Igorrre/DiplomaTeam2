@@ -15,6 +15,8 @@ public class BaseAdapter {
     String GET_USER_URI = BASE_URI + "user/8018";
     String CAR_URI = BASE_URI + "car";
     String HOUSE_URI = BASE_URI + "house";
+    String ADD_MONEY_USER_URI = BASE_URI;
+
 
     public Gson gson = new GsonBuilder()
             .excludeFieldsWithoutExposeAnnotation()
