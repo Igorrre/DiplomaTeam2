@@ -28,14 +28,14 @@ public class CarTest extends GetTokenAdapter {
                 .price(6888.88)
                 .build();
         CarResponse carResponse = carAdapter.createCar(accessToken, carRequest);
+        createdCarId = carResponse.getId();
+
         softAssert = new SoftAssert();
         softAssert.assertEquals(carResponse.getMark(), "tesla", "Модель не совпадает");
         softAssert.assertEquals(carResponse.getModel(), "x", "Марка не совпадает");
         softAssert.assertEquals(carResponse.getEngineType(), "Diesel", "Тип двигателя не совпадает");
         softAssert.assertEquals(carResponse.getPrice(), 6888.88, "Цена не совпадает");
         softAssert.assertNotNull(carResponse.getId(), "ID авто равен null");
-        createdCarId = carResponse.getId();
-
         softAssert.assertAll();
     }
 
@@ -46,13 +46,13 @@ public class CarTest extends GetTokenAdapter {
         accessToken = getAccessToken(); // Получение токена
         CarAdapter carAdapter = new CarAdapter();
         CarResponse rsReadCar = carAdapter.readCar(accessToken, createdCarId);
-        softAssert = new SoftAssert();
+
+
         softAssert.assertEquals(rsReadCar.getMark(), "tesla", "Модель не совпадает");
         softAssert.assertEquals(rsReadCar.getModel(), "x", "Марка не совпадает");
         softAssert.assertEquals(rsReadCar.getEngineType(), "Diesel", "Тип двигателя не совпадает");
         softAssert.assertEquals(rsReadCar.getPrice(), 6888.88, "Цена не совпадает");
-        softAssert.assertNotNull(rsReadCar.getId(), "ID авто равен null");
-
+        softAssert.assertEquals(rsReadCar.getId(), createdCarId, "ID Авто не найден");
         softAssert.assertAll();
     }
 
@@ -69,13 +69,13 @@ public class CarTest extends GetTokenAdapter {
                 .price(7777.77)
                 .build();
         CarResponse rsUpdateCar = carAdapter.updateCar(accessToken, createdCarId, carRequest);
+
         softAssert = new SoftAssert();
         softAssert.assertEquals(rsUpdateCar.getMark(), "teslaaaaa", "Модель не совпадает");
         softAssert.assertEquals(rsUpdateCar.getModel(), "xxx", "Марка не совпадает");
         softAssert.assertEquals(rsUpdateCar.getEngineType(), "Diesel", "Тип двигателя не совпадает");
         softAssert.assertEquals(rsUpdateCar.getPrice(), 7777.77, "Цена не совпадает");
         softAssert.assertNotNull(rsUpdateCar.getId(), "ID авто равен null");
-
         softAssert.assertAll();
     }
 

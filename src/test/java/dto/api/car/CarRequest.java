@@ -14,7 +14,7 @@ public class CarRequest {
     public String engineType;
     @SerializedName("id")
     @Expose
-    public Integer id;
+    public int id;
     @SerializedName("mark")
     @Expose
     public String mark;
