@@ -20,7 +20,7 @@ public class HouseTest extends GetTokenAdapter {
     int createdHouseId;
     String accessToken;
 
-    @Test(priority = 1, testName = "Проверка создания дома")
+    @Test(priority = 1, description = "Проверка создания дома")
     @Owner("Biruykov I.D.")
     @Description("Проверка создания дома")
     public void checkCreateHouseInDateBase() throws SQLException {

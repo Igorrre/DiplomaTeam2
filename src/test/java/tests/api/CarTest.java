@@ -15,7 +15,7 @@ public class CarTest extends GetTokenAdapter {
     private int createdCarId;
     private String accessToken;
 
-    @Test(priority = 1, testName = "Проверка создания авто")
+    @Test(priority = 1, description = "Проверка создания авто")
     @Owner("Biruykov I.D.")
     @Description("Проверка создания авто")
     public void createCar() {
@@ -39,7 +39,7 @@ public class CarTest extends GetTokenAdapter {
         softAssert.assertAll();
     }
 
-    @Test(priority = 2, testName = "Проверка получения авто")
+    @Test(priority = 2, description = "Проверка получения авто")
     @Owner("Biruykov I.D.")
     @Description("Проверка получения авто")
     public void readCar() {
@@ -56,7 +56,7 @@ public class CarTest extends GetTokenAdapter {
         softAssert.assertAll();
     }
 
-    @Test(priority = 3, testName = "Проверка изменения авто авто")
+    @Test(priority = 3, description = "Проверка изменения авто авто")
     @Owner("Biruykov I.D.")
     @Description("Проверка изменения авто авто")
     public void updateCar() {
@@ -79,7 +79,7 @@ public class CarTest extends GetTokenAdapter {
         softAssert.assertAll();
     }
 
-    @Test(priority = 4, testName = "Проверка удаления авто")
+    @Test(priority = 4, description = "Проверка удаления авто")
     @Owner("Biruykov I.D.")
     @Description("Проверка удаления авто")
     public void deleteCar() {

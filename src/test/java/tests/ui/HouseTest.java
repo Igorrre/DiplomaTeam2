@@ -9,7 +9,7 @@ public class HouseTest extends BaseTest{
 
     SoftAssert softAssert;
 
-    @Test(priority = 1, testName = "Позитивный тест Проверка сообщения, что дом создан")
+    @Test(priority = 1, description = "Позитивный тест Проверка сообщения, что дом создан")
     @Description("Проверка сообщения, что дом создан")
     public void createHouse() {
         softAssert = new SoftAssert();
@@ -21,7 +21,7 @@ public class HouseTest extends BaseTest{
         softAssert.assertAll();
     }
 
-    @Test(priority = 2, testName = "Негативный тест. Проверка сообщения, что дом не создан")
+    @Test(priority = 2, description = "Негативный тест. Проверка сообщения, что дом не создан")
     @Description("Проверка сообщения, что дом не создан")
     public void createHouseNotAllFieldCheck() {
         softAssert = new SoftAssert();
@@ -35,7 +35,7 @@ public class HouseTest extends BaseTest{
         softAssert.assertAll();
     }
 
-    @Test(priority = 3, testName = "Проверка удаления дома")
+    @Test(priority = 3, description = "Проверка удаления дома")
     @Description("Проверка удаления дома")
     public void deleteHouse() {
         softAssert = new SoftAssert();
@@ -52,7 +52,7 @@ public class HouseTest extends BaseTest{
         softAssert.assertAll();
     }
 
-    @Test(priority = 4, testName = "Проверка, что созданный дом находится в таблице")
+    @Test(priority = 4, description = "Проверка, что созданный дом находится в таблице")
     @Description("Проверка, что созданный дом находится в таблице")
     public void checkIdHouseInTable() {
         softAssert = new SoftAssert();

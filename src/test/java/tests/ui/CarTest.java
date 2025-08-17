@@ -11,7 +11,7 @@ public class CarTest extends BaseTest {
 
     SoftAssert softAssert;
 
-    @Test(priority = 1, testName = "Позитивный тест Проверка сообщения, что авто создан")
+    @Test(priority = 1, description = "Позитивный тест Проверка сообщения, что авто создан")
     @Owner("Biruykov I.D.")
     @Description("Проверка сообщения, что авто создан")
     public void createCar() {
@@ -30,7 +30,7 @@ public class CarTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(priority = 2, testName = "Негативный тест. Проверка сообщения, что авто не создан")
+    @Test(priority = 2, description = "Негативный тест. Проверка сообщения, что авто не создан")
     @Owner("Biruykov I.D.")
     @Description("Проверка сообщения, что авто не создан")
     public void createCarNotAllFieldCheck() {
@@ -52,7 +52,7 @@ public class CarTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(priority = 3, testName = "Проверка удаления авто")
+    @Test(priority = 3, description = "Проверка удаления авто")
     @Owner("Biruykov I.D.")
     @Description("Проверка удаления авто")
     public void deleteCar() {
@@ -76,7 +76,7 @@ public class CarTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(priority = 4, testName = "Проверка, что созданный авто находится в таблице")
+    @Test(priority = 4, description = "Проверка, что созданный авто находится в таблице")
     @Owner("Biruykov I.D.")
     @Description("Проверка, что созданный авто находится в таблице")
     public void checkIdCarInTable() {

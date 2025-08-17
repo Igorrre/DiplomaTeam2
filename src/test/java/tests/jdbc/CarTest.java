@@ -19,7 +19,7 @@ public class CarTest extends GetTokenAdapter {
     private int createdCarId;
     private String accessToken;
 
-    @Test
+    @Test(priority = 1, description = "Проверка создания авто")
     @Owner("Biruykov I.D.")
     @Description("Проверка авто в БД")
     public void checkCreateCarInDateBase() throws SQLException {

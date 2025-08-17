@@ -16,7 +16,7 @@ public class HouseTest extends GetTokenAdapter {
     int createdHouseId;
     String accessToken;
 
-    @Test(priority = 1, testName = "Проверка создания дома")
+    @Test(priority = 1, description = "Проверка создания дома")
     @Owner("Biruykov I.D.")
     @Description("Проверка создания дома")
     public void createHouse() {
@@ -41,7 +41,7 @@ public class HouseTest extends GetTokenAdapter {
         softAssert.assertAll();
     }
 
-    @Test(priority = 2, testName = "Проверка получения дома")
+    @Test(priority = 2, description = "Проверка получения дома")
     @Owner("Biruykov I.D.")
     @Description("Проверка получения дома")
     public void readHouse() {
