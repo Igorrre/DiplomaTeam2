@@ -56,7 +56,7 @@ public class CarTest extends GetTokenAdapter {
         softAssert.assertAll();
     }
 
-    @Test(priority = 3, description = "Проверка изменения авто авто")
+    @Test(priority = 3, description = "Проверка изменения авто")
     @Owner("Biruykov I.D.")
     @Description("Проверка изменения авто авто")
     public void updateCar() {
