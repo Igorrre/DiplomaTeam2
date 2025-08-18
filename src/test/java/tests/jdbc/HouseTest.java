@@ -46,11 +46,6 @@ public class HouseTest extends GetTokenAdapter {
                     "WHERE id = " + createdHouseId;
             ResultSet result = connection.select(query);
             if (result.next()) {
-                System.out.println("=== Результаты из БД ===");
-                System.out.println("ID: " + result.getInt("id"));
-                System.out.println("Количество этажей: " + result.getInt("floor_count"));
-                System.out.println("Стоимость: " + result.getInt("price"));
-
                 softAssert = new SoftAssert();
                 softAssert.assertEquals(result.getInt("id"), createdHouseId, "ID Дома не найден");
                 softAssert.assertEquals(rsCreateHouse.getFloorCount(), 1, "Количество этажей не совпадает");
@@ -58,7 +53,6 @@ public class HouseTest extends GetTokenAdapter {
 
                 softAssert.assertAll();
             } else {
-                System.out.println("Дом с ID " + createdHouseId + " не найден");
                 softAssert.fail("Дом не найден в БД");
             }
         } finally {
