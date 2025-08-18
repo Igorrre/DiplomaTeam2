@@ -8,7 +8,7 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Owner;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import utils.DBConnection;
+import database.DBConnection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

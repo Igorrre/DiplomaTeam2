@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import steps.api.AuthorizationStep;
 import tests.ui.BaseTest;
-import utils.DBConnection;
+import database.DBConnection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

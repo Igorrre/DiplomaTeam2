@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="DiplomaTeam2 RegressionTest" thread-count="2" parallel="tests">
-    <test name="Thread#1">
+    <test name="UI Tests">
         <classes>
             <class name="tests.ui.LoginTest"/>
             <class name="tests.ui.AddMoneyUserTest"/>
@@ -11,31 +11,20 @@
             <class name="tests.ui.CreateUserTest"/>
             <class name="tests.ui.HouseTest"/>
             <class name="tests.ui.ReadAllUsersTest"/>
-            <class name="tests.api.AuthorizationTest"/>
-            <class name="tests.api.CarTest"/>
-            <class name="tests.api.CreateUserTest"/>
-            <class name="tests.api.HouseTest"/>
-            <class name="tests.api.UserTest"/>
-            <class name="tests.jdbc.CarTest"/>
-            <class name="tests.jdbc.CreateUserInDBTest"/>
-            <class name="tests.jdbc.HouseTest"/>
         </classes>
     </test>
-    <test name="Thread#2">
+    <test name="API Tests">
         <classes>
-            <class name="tests.ui.LoginTest"/>
-            <class name="tests.ui.AddMoneyUserTest"/>
-            <class name="tests.ui.AllDeleteUserTest"/>
-            <class name="tests.ui.BuyCarTest"/>
-            <class name="tests.ui.CarTest"/>
-            <class name="tests.ui.CreateUserTest"/>
-            <class name="tests.ui.HouseTest"/>
-            <class name="tests.ui.ReadAllUsersTest"/>
             <class name="tests.api.AuthorizationTest"/>
+            <class name="tests.api.AddMoneyUserTest"/>
             <class name="tests.api.CarTest"/>
             <class name="tests.api.CreateUserTest"/>
             <class name="tests.api.HouseTest"/>
-            <class name="tests.api.UserTest"/>
+            <class name="tests.api.GetUserTest"/>
+        </classes>
+    </test>
+    <test name="JDBC Tests">
+        <classes>
             <class name="tests.jdbc.CarTest"/>
             <class name="tests.jdbc.CreateUserInDBTest"/>
             <class name="tests.jdbc.HouseTest"/>

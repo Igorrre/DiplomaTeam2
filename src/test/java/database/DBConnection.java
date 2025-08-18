@@ -1,4 +1,4 @@
-package utils;
+package database;
 
 import lombok.extern.log4j.Log4j2;
 import tests.ui.BaseTest;
