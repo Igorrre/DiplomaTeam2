@@ -15,7 +15,7 @@
 
             </parameter>
         </classes>
-    </test> <!-- Test -->
+    </test>
     <test name="Edge">
         <classes>
             <class name="tests.ui.CarTest"/>
@@ -26,5 +26,5 @@
 
             </parameter>
         </classes>
-    </test> <!-- Test -->
+    </test>
 </suite>
