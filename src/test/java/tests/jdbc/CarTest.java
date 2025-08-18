@@ -44,13 +44,6 @@ public class CarTest extends GetTokenAdapter {
                     "WHERE car.id = " + createdCarId;
             ResultSet result = connection.select(query);
             if (result.next()) {
-                System.out.println("=== Результаты из БД ===");
-                System.out.println("ID: " + result.getInt("id"));
-                System.out.println("Марка: " + result.getString("mark"));
-                System.out.println("Модель: " + result.getString("model"));
-                System.out.println("Тип двигателя: " + result.getString("type_name"));
-                System.out.println("Стоимость: " + result.getBigDecimal("price"));
-
                 softAssert = new SoftAssert();
                 softAssert.assertEquals(result.getInt("id"), createdCarId, "ID Авто не найден");
                 softAssert.assertEquals(result.getString("mark"), "tesla", "Модель не совпадает");
@@ -58,7 +51,6 @@ public class CarTest extends GetTokenAdapter {
                 softAssert.assertEquals(result.getString("type_name"), "Diesel", "Тип двигателя не совпадает");
                 softAssert.assertEquals(result.getDouble("price"), 6888.88, "Цена не совпадает");
             } else {
-                System.out.println("Авто с ID " + createdCarId + " не найден");
                 softAssert.fail("Авто не найден в БД");
             }
         } finally {

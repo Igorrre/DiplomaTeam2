@@ -14,7 +14,7 @@ import utils.DBConnection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CreateUserInDBTest extends BaseTest {
+public class UserTest extends BaseTest {
 
     SoftAssert softAssert = new SoftAssert();
     UserAdapter userAdapter = new UserAdapter();
@@ -32,7 +32,7 @@ public class CreateUserInDBTest extends BaseTest {
                 .secondName("Zadnaja")
                 .sex("MALE")
                 .build();
-        CreateUserResponse response = userAdapter.createUser(createUserRequest, authorizationStep.authorisationApi(user, password));
+        CreateUserResponse response = userAdapter.createUser(createUserRequest, authorizationStep.authorisationApi());
         int createdUserId = response.getId();
         DBConnection connection = new DBConnection();
         try {
@@ -40,20 +40,12 @@ public class CreateUserInDBTest extends BaseTest {
             String query = "SELECT * FROM person WHERE id = " + createdUserId;
             ResultSet result = connection.select(query);
             if (result.next()) {
-                System.out.println("=== Результаты из БД ===");
-                System.out.println("ID: " + result.getInt("id"));
-                System.out.println("Имя: " + result.getString("first_name"));
-                System.out.println("Фамилия: " + result.getString("second_name"));
-                System.out.println("Возраст: " + result.getInt("age"));
-                System.out.println("Деньги: " + result.getBigDecimal("money"));
-
                 softAssert.assertEquals(result.getInt("id"), createdUserId, "ID не совпадает");
                 softAssert.assertEquals(result.getString("first_name"), createUserRequest.getFirstName(), "Имя не совпадает");
                 softAssert.assertEquals(result.getString("second_name"), createUserRequest.getSecondName(), "Фамилия не совпадает");
                 softAssert.assertEquals(result.getInt("age"), createUserRequest.getAge(), "Возраст не совпадает");
                 softAssert.assertEquals(result.getBigDecimal("money").intValue(), createUserRequest.getMoney(), "Деньги не совпадают");
             } else {
-                System.out.println("Пользователь с ID " + createdUserId + " не найден");
                 softAssert.fail("Пользователь не найден в БД");
             }
         } finally {
