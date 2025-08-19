@@ -32,4 +32,29 @@ public class HouseAdapter extends BaseAdapter {
                 .extract()
                 .as(HouseResponse.class);
     }
+    @Step("Обновление тестового дома по Id")
+    public HouseResponse updateHouse(String accessToken, Integer id, HouseRequest houseRequest) {
+        return spec
+                .given()
+                .header("Authorization", "Bearer " + accessToken)
+                .body(houseRequest)
+                .when()
+                .put(HOUSE_URI + "/" + id)
+                .then()
+                .log().all()
+                .statusCode(202)
+                .extract()
+                .as(HouseResponse.class);
+    }
+
+    @Step("Удаление тестового дома по Id")
+    public void deleteHouse(String accessToken, Integer id) {
+        spec
+                .header("Authorization", "Bearer " + accessToken)
+                .when()
+                .delete(HOUSE_URI + "/" + id)
+                .then()
+                .log().all()
+                .statusCode(204);
+    }
 }
