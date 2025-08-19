@@ -19,7 +19,8 @@ public class CreateUserPage extends BasePage {
     private final By FIRST_NAME = By.id("first_name_send");
     private final By LAST_NAME = By.id("last_name_send");
     private final By AGE = By.id("age_send");
-    private final By RADIO_BETTON = By.xpath("//input[@type='radio' and @value='MALE']");
+    private final By RADIO_BUTTON = By.xpath("//input[@type='radio' and @value='MALE']");
+    private final By MONEY = By.id("money_send");
 
     public CreateUserPage(WebDriver driver) {
         super(driver);
@@ -28,8 +29,6 @@ public class CreateUserPage extends BasePage {
     @Override
     public CreateUserPage isPageOpened() {
         log.info("Page is open");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_NAME));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(LAST_NAME));
         wait.until(ExpectedConditions.visibilityOfElementLocated(BUTTON_PUSH_TO_API));
         return this;
     }
@@ -44,14 +43,15 @@ public class CreateUserPage extends BasePage {
     @Step("Внесение значений в поля формы")
     public CreateUserPage setValuesToCreateUser(Users user) {
         log.info("Set Values To Create User: {}", user);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_NAME));
+        wait.until(ExpectedConditions.elementToBeClickable(FIRST_NAME));
         new WriteText(driver, "first_name_send").writeText(user.getFirstName());
-        wait.until(ExpectedConditions.visibilityOfElementLocated(LAST_NAME));
+        wait.until(ExpectedConditions.elementToBeClickable(LAST_NAME));
         new WriteText(driver, "last_name_send").writeText(user.getLastName());
-        wait.until(ExpectedConditions.visibilityOfElementLocated(AGE));
+        wait.until(ExpectedConditions.elementToBeClickable(AGE));
         new WriteText(driver, "age_send").writeText(String.valueOf(user.getAge()));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(RADIO_BETTON));
+        wait.until(ExpectedConditions.elementToBeClickable(RADIO_BUTTON));
         new ClickValue(driver, "MALE").clickValue();
+        wait.until(ExpectedConditions.elementToBeClickable(MONEY));
         new WriteText(driver, "money_send").writeText(String.valueOf(user.getMoney()));
         wait.until(ExpectedConditions.visibilityOfElementLocated(BUTTON_PUSH_TO_API));
         return this;
