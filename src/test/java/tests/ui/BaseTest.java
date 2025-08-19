@@ -14,10 +14,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import pages.*;
-import steps.ui.CreateCarStep;
-import steps.ui.CreateHouseStep;
-import steps.ui.CreateUserStep;
-import steps.ui.LoginStep;
+import steps.ui.*;
 import utils.PropertyReader;
 
 import java.time.Duration;
@@ -30,6 +27,7 @@ public class BaseTest {
     WebDriver driver;
     Users users;
     House house;
+    SettleToHouseStep settleToHouseStep;
     CreateHouseStep createHouseStep;
     CreateHousePage createHousePage;
     ReadAllHousePage readAllHousePage;
@@ -45,6 +43,8 @@ public class BaseTest {
     CreateUserStep createUserStep;
     ReadAllUsersPage readAllUsersPage;
     AddMoneyUserPage addMoneyUserPage;
+    ReadIDHousePage readIDHousePage;
+    SettleToHousePage settleToHousePage;
     protected String userId;
     protected String carId;
     protected String houseId;
@@ -93,6 +93,9 @@ public class BaseTest {
         createHousePage = new CreateHousePage(driver);
         readAllHousePage = new ReadAllHousePage(driver);
         createHouseStep = new CreateHouseStep(driver);
+        readIDHousePage = new ReadIDHousePage(driver);
+        settleToHousePage = new SettleToHousePage(driver);
+        settleToHouseStep = new SettleToHouseStep(driver);
     }
 
     @AfterMethod(alwaysRun = true, description = "Закрытие браузера")
