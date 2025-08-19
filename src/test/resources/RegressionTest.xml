@@ -17,21 +17,21 @@
             <class name="tests.ui.ReadAllUsersTest"/>
         </classes>
     </test>
-<!--    <test name="API Tests">-->
-<!--        <classes>-->
-<!--            <class name="tests.api.AuthorizationTest"/>-->
-<!--            <class name="tests.api.AddMoneyUserTest"/>-->
-<!--            <class name="tests.api.CarTest"/>-->
-<!--            <class name="tests.api.CreateUserTest"/>-->
-<!--            <class name="tests.api.HouseTest"/>-->
-<!--            <class name="tests.api.GetUserTest"/>-->
-<!--        </classes>-->
-<!--    </test>-->
-<!--    <test name="JDBC Tests">-->
-<!--        <classes>-->
-<!--            <class name="tests.jdbc.CarTest"/>-->
-<!--            <class name="tests.jdbc.UserTest"/>-->
-<!--            <class name="tests.jdbc.HouseTest"/>-->
-<!--        </classes>-->
-<!--    </test>-->
+    <test name="API Tests">
+        <classes>
+            <class name="tests.api.AuthorizationTest"/>
+            <class name="tests.api.AddMoneyUserTest"/>
+            <class name="tests.api.CarTest"/>
+            <class name="tests.api.CreateUserTest"/>
+            <class name="tests.api.HouseTest"/>
+            <class name="tests.api.GetUserTest"/>
+        </classes>
+    </test>
+    <test name="JDBC Tests">
+        <classes>
+            <class name="tests.jdbc.CarTest"/>
+            <class name="tests.jdbc.UserTest"/>
+            <class name="tests.jdbc.HouseTest"/>
+        </classes>
+    </test>
 </suite>
