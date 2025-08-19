@@ -16,6 +16,10 @@ public class CreateUserPage extends BasePage {
     private final By VALUE_STATUS_CODE = By.xpath("(//div[@role='group']//button[@type='button'])[2]");
     private final By NEW_USER_ID = By.xpath("(//div[@role='group']//button[@type='button'])[3]");
     private final By INPUT_USER_MONEY = By.xpath("//input[@id='money_send']");
+    private final By FIRST_NAME = By.id("first_name_send");
+    private final By LAST_NAME = By.id("last_name_send");
+    private final By AGE = By.id("age_send");
+    private final By RADIO_BETTON = By.xpath("//input[@type='radio' and @value='MALE']");
 
     public CreateUserPage(WebDriver driver) {
         super(driver);
@@ -24,6 +28,8 @@ public class CreateUserPage extends BasePage {
     @Override
     public CreateUserPage isPageOpened() {
         log.info("Page is open");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_NAME));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(LAST_NAME));
         wait.until(ExpectedConditions.visibilityOfElementLocated(BUTTON_PUSH_TO_API));
         return this;
     }
@@ -38,9 +44,13 @@ public class CreateUserPage extends BasePage {
     @Step("Внесение значений в поля формы")
     public CreateUserPage setValuesToCreateUser(Users user) {
         log.info("Set Values To Create User: {}", user);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_NAME));
         new WriteText(driver, "first_name_send").writeText(user.getFirstName());
+        wait.until(ExpectedConditions.visibilityOfElementLocated(LAST_NAME));
         new WriteText(driver, "last_name_send").writeText(user.getLastName());
+        wait.until(ExpectedConditions.visibilityOfElementLocated(AGE));
         new WriteText(driver, "age_send").writeText(String.valueOf(user.getAge()));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(RADIO_BETTON));
         new ClickValue(driver, "MALE").clickValue();
         new WriteText(driver, "money_send").writeText(String.valueOf(user.getMoney()));
         wait.until(ExpectedConditions.visibilityOfElementLocated(BUTTON_PUSH_TO_API));
