@@ -55,4 +55,31 @@ public class HouseTest extends GetTokenAdapter {
         softAssert.assertEquals(rsReadHouse.getId(), createdHouseId, "ID Дома не найден");
         softAssert.assertAll();
     }
+    @Test(priority = 3, description = "Проверка изменения дома")
+    @Owner("Grankina O.S.")
+    @Description("Проверка изменения авто дома")
+    public void updateHouse() {
+        accessToken = getAccessToken(); // Получение токена
+        HouseAdapter houseAdapter = new HouseAdapter();
+        HouseRequest houseRequest = HouseRequest.builder()
+                .floorCount(5)
+                .price(5000)
+                .build();
+        HouseResponse rsUpdateHouse = houseAdapter.updateHouse(accessToken, createdHouseId, houseRequest);
+        softAssert = new SoftAssert();
+        softAssert.assertEquals(rsUpdateHouse.getFloorCount(), 5, "Количество этажей не совпадает");
+        softAssert.assertEquals(rsUpdateHouse.getPrice(), 5000, "Стоимость дома не совпадает");
+        softAssert.assertNotNull(rsUpdateHouse.getId(), "ID дома равен null");
+
+        softAssert.assertAll();
+    }
+
+    @Test(priority = 4, description = "Проверка удаления дома")
+    @Owner("Grankina O.S.")
+    @Description("Проверка удаления дома")
+    public void deleteHouse() {
+        accessToken = getAccessToken(); // Получение токена
+        HouseAdapter houseAdapter = new HouseAdapter();
+        houseAdapter.deleteHouse(accessToken, createdHouseId);
+    }
 }
