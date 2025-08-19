@@ -96,4 +96,31 @@ public class CarTest extends BaseTest {
                 "Авто отсутствует в таблице");
         softAssert.assertAll();
     }
+
+    @Test(priority = 5, description = "Позитивный тест Продажа авто")
+    @Owner("Bazhenov Y.N.")
+    @Description("Проверка, что авто у пользователя удален")
+    public void checkSellCarInReadUser() {
+        softAssert = new SoftAssert();
+        Faker faker = new Faker();
+        Car car = Car.builder()
+                .engine("Electric")
+                .mark("tesla")
+                .model("model s")
+                .price(faker.number().numberBetween(500, 5000))
+                .build();
+        loginStep.authorisation(user, password);
+        createCarStep.createCar(car);
+        carId = createCarsPage.getValueCarId();
+        allDeletePage.open()
+                .isPageOpened()
+                .deleteTestCarId(carId);
+        readUserWithCarsPage.open()
+                .isPageOpened()
+                .inputIdUser(userId)
+                .clickButtonRead()
+                .getCountAuto();
+        softAssert.assertTrue(readUserWithCarsPage.getCountAuto().isEmpty(), "Авто не удалено");
+        softAssert.assertAll();
+    }
 }
