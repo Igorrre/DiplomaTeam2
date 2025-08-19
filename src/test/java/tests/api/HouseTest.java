@@ -16,7 +16,9 @@ public class HouseTest extends GetTokenAdapter {
     int createdHouseId;
     String accessToken;
 
-    @Test(priority = 1, description = "Проверка создания дома")
+    @Test(testName = "API-тест. Создание дома",
+            priority = 1,
+            description = "Проверка создания дома")
     @Owner("Biruykov I.D.")
     @Description("Проверка создания дома")
     public void createHouse() {
@@ -41,7 +43,9 @@ public class HouseTest extends GetTokenAdapter {
         softAssert.assertAll();
     }
 
-    @Test(priority = 2, description = "Проверка получения дома")
+    @Test(testName = "API-тест. Получение дома",
+            priority = 2,
+            description = "Проверка получения дома")
     @Owner("Biruykov I.D.")
     @Description("Проверка получения дома")
     public void readHouse() {
@@ -54,5 +58,37 @@ public class HouseTest extends GetTokenAdapter {
         softAssert.assertEquals(rsReadHouse.getPrice(), 1000, "Стоимость дома не совпадает");
         softAssert.assertEquals(rsReadHouse.getId(), createdHouseId, "ID Дома не найден");
         softAssert.assertAll();
+    }
+
+    @Test(testName = "API-тест. Изменение дома",
+            priority = 3,
+            description = "Проверка изменения дома")
+    @Owner("Grankina O.S.")
+    @Description("Проверка изменения авто дома")
+    public void updateHouse() {
+        accessToken = getAccessToken(); // Получение токена
+        HouseAdapter houseAdapter = new HouseAdapter();
+        HouseRequest houseRequest = HouseRequest.builder()
+                .floorCount(5)
+                .price(5000)
+                .build();
+        HouseResponse rsUpdateHouse = houseAdapter.updateHouse(accessToken, createdHouseId, houseRequest);
+        softAssert = new SoftAssert();
+        softAssert.assertEquals(rsUpdateHouse.getFloorCount(), 5, "Количество этажей не совпадает");
+        softAssert.assertEquals(rsUpdateHouse.getPrice(), 5000, "Стоимость дома не совпадает");
+        softAssert.assertNotNull(rsUpdateHouse.getId(), "ID дома равен null");
+
+        softAssert.assertAll();
+    }
+
+    @Test(testName = "API-тест. Удаление дома",
+            priority = 4,
+            description = "Проверка удаления дома")
+    @Owner("Grankina O.S.")
+    @Description("Проверка удаления дома")
+    public void deleteHouse() {
+        accessToken = getAccessToken(); // Получение токена
+        HouseAdapter houseAdapter = new HouseAdapter();
+        houseAdapter.deleteHouse(accessToken, createdHouseId);
     }
 }

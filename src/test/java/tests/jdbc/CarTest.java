@@ -2,13 +2,13 @@ package tests.jdbc;
 
 import adapters.CarAdapter;
 import adapters.GetTokenAdapter;
+import database.DBConnection;
 import dto.api.car.CarRequest;
 import dto.api.car.CarResponse;
 import io.qameta.allure.Description;
 import io.qameta.allure.Owner;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import database.DBConnection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +19,8 @@ public class CarTest extends GetTokenAdapter {
     private int createdCarId;
     private String accessToken;
 
-    @Test(priority = 1, description = "Проверка создания авто")
+    @Test(testName = "БД-тест. Создание авто",
+            description = "Проверка создания авто")
     @Owner("Biruykov I.D.")
     @Description("Проверка авто в БД")
     public void checkCreateCarInDateBase() throws SQLException {

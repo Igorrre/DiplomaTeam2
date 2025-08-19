@@ -18,7 +18,6 @@ public class BuyCarTest extends BaseTest {
     @Description("Проверка, что пользователь может купить авто")
     public void checkUserWithCar() {
         softAssert = new SoftAssert();
-        users = setUserFieldsFaker();
         Faker faker = new Faker();
         Car car = Car.builder()
                 .engine("Electric")

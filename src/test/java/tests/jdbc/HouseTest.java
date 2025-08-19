@@ -2,6 +2,7 @@ package tests.jdbc;
 
 import adapters.GetTokenAdapter;
 import adapters.HouseAdapter;
+import database.DBConnection;
 import dto.api.house.HouseRequest;
 import dto.api.house.HouseResponse;
 import dto.api.house.ParkingPlaceRequest;
@@ -9,7 +10,6 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Owner;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import database.DBConnection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,7 +20,8 @@ public class HouseTest extends GetTokenAdapter {
     int createdHouseId;
     String accessToken;
 
-    @Test(priority = 1, description = "Проверка создания дома")
+    @Test(testName = "БД-тест. Создание дома",
+            description = "Проверка создания дома")
     @Owner("Biruykov I.D.")
     @Description("Проверка создания дома")
     public void checkCreateHouseInDateBase() throws SQLException {
@@ -50,8 +51,6 @@ public class HouseTest extends GetTokenAdapter {
                 softAssert.assertEquals(result.getInt("id"), createdHouseId, "ID Дома не найден");
                 softAssert.assertEquals(rsCreateHouse.getFloorCount(), 1, "Количество этажей не совпадает");
                 softAssert.assertEquals(rsCreateHouse.getPrice(), 1000, "Стоимость дома не совпадает");
-
-                softAssert.assertAll();
             } else {
                 softAssert.fail("Дом не найден в БД");
             }

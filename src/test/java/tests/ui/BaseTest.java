@@ -30,7 +30,6 @@ public class BaseTest {
     WebDriver driver;
     Users users;
     House house;
-    Car car;
     CreateHouseStep createHouseStep;
     CreateHousePage createHousePage;
     ReadAllHousePage readAllHousePage;
@@ -68,6 +67,7 @@ public class BaseTest {
             options.addArguments("--disable-popup-blocking");
             options.addArguments("--disable-infobars");
             options.addArguments("--headless");
+            options.addArguments("--window-size=1920,1080");
             driver = new ChromeDriver(options);
         } else if (browser.equalsIgnoreCase("edge")) {
             EdgeOptions options = new EdgeOptions();

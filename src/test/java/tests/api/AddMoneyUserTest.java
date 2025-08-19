@@ -20,7 +20,8 @@ public class AddMoneyUserTest extends BaseTest {
 
     CreateUserResponse createUserStepResponse = createUserStep.createUserGetID();
 
-    @Test
+    @Test(testName = "API-тест. Добавление денег пользователю",
+            description = "Проверка добавления денег пользователю")
     @Owner("Kozachek Y.N.")
     @Description("Проверка добавления денег пользователю")
     public void addMoneyUser() {
