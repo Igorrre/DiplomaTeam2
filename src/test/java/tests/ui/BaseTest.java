@@ -30,7 +30,6 @@ public class BaseTest {
     WebDriver driver;
     Users users;
     House house;
-    Car car;
     CreateHouseStep createHouseStep;
     CreateHousePage createHousePage;
     ReadAllHousePage readAllHousePage;

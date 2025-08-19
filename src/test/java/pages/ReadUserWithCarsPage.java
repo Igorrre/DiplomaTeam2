@@ -11,6 +11,7 @@ public class ReadUserWithCarsPage extends BasePage {
     private final By FIELD_NUMBER = By.id("user_input");
     private final By USER_ID = By.xpath("//table[1]//td[1]");
     private final By CAR_ID = By.xpath("//table[2]//td[1]");
+    private final By COUNT_AUTO = By.xpath("//table[1]//td[7]/font/font");
 
     public ReadUserWithCarsPage(WebDriver driver) {
         super(driver);
@@ -48,5 +49,10 @@ public class ReadUserWithCarsPage extends BasePage {
     @Step("Получение ID авто")
     public String getCarId() {
         return driver.findElement(CAR_ID).getText();
+    }
+
+    @Step("Получение количества авто в таблице Пользователя с авто")
+    public String getCountAuto() {
+        return driver.findElement(COUNT_AUTO).getText();
     }
 }
