@@ -16,7 +16,8 @@ public class CreateUserTest extends BaseTest {
     UserAdapter userAdapter = new UserAdapter();
     AuthorizationStep authorizationStep = new AuthorizationStep();
 
-    @Test
+    @Test(testName = "API-тест. Создание пользователя",
+            description = "Проверка создания пользователя")
     @Owner("Kozachek Y.N.")
     @Description("Создание пользователя API")
     public void createUser() {

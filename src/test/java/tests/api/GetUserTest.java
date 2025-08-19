@@ -13,7 +13,8 @@ public class GetUserTest {
     SoftAssert softAssert = new SoftAssert();
     UserAdapter userAdapter = new UserAdapter();
 
-    @Test
+    @Test(testName = "API-тест. Получение пользователя",
+            description = "Проверка получения пользователя")
     @Owner("Kozachek Y.N.")
     @Description("Проверка получения пользователя")
     public void getUser() {
