@@ -1,6 +1,5 @@
 package tests.ui;
 
-import dto.ui.car.Car;
 import dto.ui.house.House;
 import dto.ui.user.Users;
 import org.openqa.selenium.WebDriver;
