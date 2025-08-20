@@ -20,6 +20,8 @@ public abstract class BasePage {
     String ADD_MONEY_TO_USER = BASE_URI + "#/update/users/plusMoney";
     String CREATE_HOUSE_URL = BASE_URI + "#/create/house";
     String ALL_READ_HOUSE_URL = BASE_URI + "#/read/houses";
+    String READ_ID_HOUSE_URL = BASE_URI + "#/read/house";
+    String SETTLE_TO_HOUSE_URL = BASE_URI + "#/update/houseAndUser";
 
     WebDriver driver;
     WebDriverWait wait;

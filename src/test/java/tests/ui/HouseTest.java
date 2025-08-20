@@ -1,9 +1,14 @@
 package tests.ui;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Owner;
+import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import pages.SettleToHousePage;
+
 import static dto.ui.house.HouseFactory.getHouse;
+import static dto.ui.user.UserFactor.setUserFieldsFaker;
 
 public class HouseTest extends BaseTest{
 
@@ -71,6 +76,76 @@ public class HouseTest extends BaseTest{
         softAssert.assertEquals(allDeletePage.getMessageDeleteHouse(),
                 "Status: 204",
                 "Дом не удален");
+        softAssert.assertAll();
+    }
+
+    @Test(priority = 5, description = "Проверка на заселение пользователя в дом")
+    @Owner("Bazhenov Y.N.")
+    @Description("Проверка статус-кода при успешном заселения пользователя")
+    public void checkStatusIfUserSettleInHouse() {
+        softAssert = new SoftAssert();
+        users = setUserFieldsFaker();
+        loginStep.authorisation(user, password);
+        createHouseStep.createHouse(house);
+        houseId = createHousePage.getValueHouseId();
+        userId = createUserStep
+                .getValueUserId();
+        settleToHouseStep.settleToHouse(userId, houseId);
+        softAssert.assertEquals(settleToHousePage.checkMessage(), "Status: Successfully pushed, code: 200", "Статус-код неверный");
+        softAssert.assertAll();
+    }
+    @Test(priority = 6, description = "Проверка на выселения пользователя в дом")
+    @Owner("Bazhenov Y.N.")
+    @Description("Проверка статус-кода при успешном выселении пользователя")
+    public void checkStatusIfUserSEvictInHouse() {
+        softAssert = new SoftAssert();
+        users = setUserFieldsFaker();
+        house = getHouse();
+        loginStep.authorisation(user, password);
+        createHouseStep.createHouse(house);
+        houseId = createHousePage.getValueHouseId();
+        userId = createUserStep
+                .getValueUserId();
+        settleToHouseStep.evictToHouse(userId, houseId);
+        softAssert.assertEquals(settleToHousePage.checkMessage(), "Status: Successfully pushed, code: 200", "Статус-код неверный");
+        softAssert.assertAll();
+    }
+    @Test(priority = 7, description = "Проверка привязки пользователя к дому после заселения")
+    @Owner("Bazhenov Y.N.")
+    @Description("Поиск пользователя в таблице Read one by ID")
+    public void checkUserIDInTableReadOneById() {
+        softAssert = new SoftAssert();
+        users = setUserFieldsFaker();
+        loginStep.authorisation(user, password);
+        createHouseStep.createHouse(house);
+        houseId = createHousePage.getValueHouseId();
+        userId = createUserStep
+                .getValueUserId();
+        settleToHouseStep.settleToHouse(userId, houseId);
+        readIDHousePage.open()
+                .isPageOpened()
+                .inputIdHouse(houseId)
+                .clickButtonReadHouse();
+        softAssert.assertTrue(readAllHousePage.findIdHouseInTable(userId),"Пользователь не заселен в дом");
+        softAssert.assertAll();
+    }
+    @Test(priority = 6, description = "Проверка привязки пользователя к дому после выселения")
+    @Owner("Bazhenov Y.N.")
+    @Description("Поиск пользователя в таблице Read one by ID после выселения")
+    public void checkUserIdInTableReadOneByIdIsEmpty() {
+        softAssert = new SoftAssert();
+        users = setUserFieldsFaker();
+        loginStep.authorisation(user, password);
+        createHouseStep.createHouse(house);
+        houseId = createHousePage.getValueHouseId();
+        userId = createUserStep
+                .getValueUserId();
+        settleToHouseStep.evictToHouse(userId, houseId);
+        readIDHousePage.open()
+                .isPageOpened()
+                .inputIdHouse(houseId)
+                .clickButtonReadHouse();
+        softAssert.assertFalse(readAllHousePage.findIdHouseInTable(userId),"Пользователь не выселен в дом");
         softAssert.assertAll();
     }
 }
