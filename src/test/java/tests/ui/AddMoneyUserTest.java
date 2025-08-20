@@ -12,7 +12,8 @@ public class AddMoneyUserTest extends BaseTest {
     SoftAssert softAssert;
     String addMoney = "10";
 
-    @Test
+    @Test(testName = "Добавление денег пользователю",
+            description = "Проверка добавление денег пользователю")
     @Owner("Kozachek Y.N.")
     @Description("Проверка добавление денег пользователю")
     public void checkAddNewMoneyByUser() {

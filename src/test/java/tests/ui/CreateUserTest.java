@@ -10,7 +10,8 @@ public class CreateUserTest extends BaseTest {
 
     SoftAssert softAssert;
 
-    @Test
+    @Test(testName = "Создание пользователя",
+            description = "Проверка создания пользователя статус кода 201")
     @Owner("Kozachek Y.N.")
     @Description("Проверка создания пользователя статус кода 201")
     public void checkStatusCode201() {

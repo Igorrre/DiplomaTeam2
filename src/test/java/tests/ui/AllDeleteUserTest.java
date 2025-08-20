@@ -11,7 +11,8 @@ public class AllDeleteUserTest extends BaseTest {
 
     SoftAssert softAssert;
 
-    @Test
+    @Test(testName = "Удаление пользователя в таблице",
+            description = "Проверка удаления пользователя код 204 и отсутствие в таблице")
     @Owner("Kozachek Y.N.")
     @Description("Проверка удаления пользователя код 204 и отсутствие в таблице")
     public void checkStatusCode204() {

@@ -11,7 +11,8 @@ public class ReadAllUsersTest extends BaseTest {
 
     SoftAssert softAssert;
 
-    @Test
+    @Test(testName = "Поиск пользователя в таблице",
+            description = "Проверка, что созданный пользователь находится в таблице")
     @Owner("Kozachek Y.N.")
     @Description("Проверка, что созданный пользователь находится в таблице")
     public void checkIfUserIsInTable() {
